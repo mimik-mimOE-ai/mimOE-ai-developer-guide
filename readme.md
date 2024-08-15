@@ -60,7 +60,7 @@ From a developer's point of view, the important thing to understand about mimOE.
 In order to get full benefit from reading this documentation you need to have the following before you start:
 * A mimik developer's account, which you create on the [Getting Started page of the mimik Developer Portal](https://console.mimik.com/create_account). (See the following figure.)
 ![Create Account](./images/create-account-01.png)
-* a general understanding of mimik technology because mimOE.ai is an extension of it. The following links refer to entries in the [mimik Developer Documentation](https://devdocs.mimik.com/) that describe the basics of mimik.
+* A general understanding of mimik technology because mimOE.ai is an extension of it. The following links refer to entries in the [mimik Developer Documentation](https://devdocs.mimik.com/) that describe the basics of mimik.
   * [Introduction to edgeEngine](https://devdocs.mimik.com/introduction) : Introduces a developer to the 3 essential components of edgeEngine technology: the edgeEngine Runtime, the hybrid edgeCloud, and the edgeEngine Service Mesh.
   * [Key Concepts](https://devdocs.mimik.com/key-concepts) : Describes the key concepts a developer needs to understand in order to work effectively with edgeEngine.
 * In addition to understanding the basics of mimik technology, a developer needs to have a working understanding of the nature of large language models (LLM) and how they respond to prompts and queries submitted by end-users. LLMs are important part of mimOE.ai
