@@ -1,5 +1,3 @@
-# mimOE.ai Developers Guide
-
 # Table of Contents
 
 - [mimOE.ai Developers Guide](#mimoeai-developers-guide)
@@ -348,4 +346,5 @@ To learn how to update the Coordinator Machine to support the additional Agent M
 ### Connecting a new instance of the User Console web server to the Coordinator Machine
 
 To learn how to create an instance of the User Console web server that is bound to the newly created Agent Collection on the Coordinator Machine, go [here](./03-multi-agent-architecture/user-console/).
+
 
