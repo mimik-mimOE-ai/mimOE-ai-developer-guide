@@ -1,0 +1,202 @@
+### Configuration 
+@host = http://{{$dotenv HOST_IP_ADDRESS}}:8083
+@developerIdToken={{$dotenv DEVELOPER_ID_TOKEN}}
+@clientId={{$dotenv CLIENT_ID}}
+@apiKey={{$dotenv API_KEY}}
+
+@agentCollectionName={{$dotenv AGENT_COLLECTION_NAME}}
+
+### Microservices
+@maiTarName = mai-v1-1.7.0.tar
+@mlmTarName = mim-v1-1.6.0.tar
+###Settings
+@tokenScope=openid edge:mcm edge:clusters edge:account:associate
+@modelUrl={{$dotenv MODEL_URL}}
+
+### Node Info
+### Set the following values using the information returned from each constituent node's setup.http file.
+@nodeId_AGENT_MACHINE_1 = {{$dotenv NODE_ID_AGENT_1}}
+@nodeId_COORDINATOR = {{$dotenv NODE_ID_COORDINATOR}}
+
+### Setup API's 
+
+#### Step 1: Get Target Device Information. This call returns the NODE_ID for the device
+# @name jsonrpc
+POST {{host}}/jsonrpc/v1
+Content-Content-Type: application/json
+
+{"jsonrpc": "2.0", "method": "getMe", "params": [], "id": 1}
+
+
+#### Step 2: Get edgeIdToken
+# @name jsonrpc
+POST {{host}}/jsonrpc/v1
+Content-Content-Type: application/json
+
+{"jsonrpc": "2.0", "method": "getEdgeIdToken", "params": [], "id": 1}
+
+#### Save Token  to the local file variable
+@edgeIdToken={{jsonrpc.response.body.$.result.id_token}}
+
+#### Step 3: Get Access Token
+# @name mid
+POST https://devconsole-mid.mimik.com/token
+Content-Type: application/x-www-form-urlencoded
+
+client_id={{clientId}}
+&grant_type=id_token_signin
+&id_token={{developerIdToken}}
+&scope={{tokenScope}}
+&edge_id_token={{edgeIdToken}}
+
+####
+@edgeToken={{mid.response.body.$.access_token}}
+
+#### Step 4: Associate device with account 
+POST {{host}}/jsonrpc/v1
+Content-Content-Type: application/json
+
+{"jsonrpc": "2.0", "method": "associateAccount", "params": ["{{edgeToken}}"], "id": 1}
+
+
+### Step 5: Deploy mAI microservice
+POST {{host}}/mcm/v1/images
+Content-Type: multipart/form-data; boundary=$Boundary$
+Authorization: Bearer {{edgeToken}}
+
+--$Boundary$
+Content-Disposition: form-data; name="image"; filename="{{maiTarName}}"
+
+< ../../deploy/{{maiTarName}}
+--$Boundary$--
+
+#### Step 6: Start mAI Microservice
+POST {{host}}/mcm/v1/containers
+Authorization: Bearer {{edgeToken}}
+
+{
+    "name": "mai-v1",
+    "image": "mai-v1",
+    "env": {
+      "MCM.BASE_API_PATH": "/mai/v1",
+      "MCM.API_ALIAS": "true",
+      "EDGE_ACCESS_TOKEN": "{{edgeToken}}",
+      "API_KEY": "{{apiKey}}",
+      "MCM.OTEL_SUPPORT": "true"
+    }
+}
+
+###
+
+### Step 7: Deploy mILM microservice
+POST {{host}}/mcm/v1/images
+Content-Type: multipart/form-data; boundary=$Boundary$
+Authorization: Bearer {{edgeToken}}
+
+--$Boundary$
+Content-Disposition: form-data; name="image"; filename="{{mlmTarName}}"
+
+< ../../deploy/{{mlmTarName}}
+--$Boundary$--
+
+#### Step 8: Start mILM microservice 
+POST {{host}}/mcm/v1/containers
+Authorization: Bearer {{edgeToken}}
+
+{
+    "name": "mim-v1",
+    "image": "mim-v1",
+    "env": {
+      "MCM.BASE_API_PATH": "/mim/v1",
+      "API_KEY": "{{apiKey}}",
+      "MCM.API_ALIAS": "true",
+      "MCM.OTEL_SUPPORT": "true"
+    }
+}
+
+### Step 9: Download model (Google Gemma 2b)
+### Execute using VS Code's Copy Request as cURL because VS Code doesn't know how to handle streaming API
+POST {{host}}/api/mim/v1/models
+Content-Type: application/json
+Authorization: bearer {{apiKey}}
+
+{
+  "id": "lmstudio-ai/gemma-2b-it-GGUF",
+  "object": "model",
+  "url": "{{modelUrl}}",
+  "owned_by": "lmstudio-ai"
+}
+
+
+#### Step 10: Get Images to verify deployment
+GET {{host}}/mcm/v1/images
+Authorization: Bearer {{edgeToken}}
+
+#### Step 11: Get Containers to verify they're running
+GET {{host}}/mcm/v1/containers
+Authorization: Bearer {{edgeToken}}
+
+### Step 12: View deployed models 
+GET {{host}}/api/mim/v1/models
+Content-Type: application/json
+Authorization: bearer {{apiKey}}
+
+#### Step 13: Declare the Agent Collection and the synthesis prompt
+POST {{host}}/api/mai/v1/models
+Content-Type: application/json
+Authorization: bearer {{apiKey}}
+
+{
+  "id": "{{agentCollectionName}}",
+  "object": "model",
+  "modelfile": {
+    "prompts": [
+      {
+        "url": "{{nodeId_AGENT_MACHINE_1}}@mmesh/{{clientId}}/mim/v1/chat/completions",
+        "model": "lmstudio-ai/gemma-2b-it-GGUF",
+        "apikey": "Bearer {{apiKey}}",
+        "required": true
+      }
+    ],
+    "summary": {
+      "template": "Given the responses from assistants below, synthesize the information to create a unified, concise summary. Provide a coherent answer that integrates these perspectives.\n-----\n\n${{mergedContent}}",
+      "url": "{{nodeId_COORDINATOR}}@mmesh/{{clientId}}/mim/v1/chat/completions",
+      "model": "lmstudio-ai/gemma-2b-it-GGUF",
+      "apikey": "Bearer {{apiKey}}",
+      "required": true
+    }
+  },
+  "owned_by": "mimik"
+}
+
+#### Step 14: Excercise the Coordinator Machine by submitting an initial prompt
+### Execute using VS Code's Copy Request as cURL because VS Code don't know how to handle streaming API
+POST {{host}}/api/mai/v1/chat/completions
+Content-Type: application/json
+Authorization: bearer {{apiKey}}
+
+{ 
+  "model": "{{agentCollectionName}}",
+  "messages": [ 
+    { "role": "user", "content": "Give me the 3 most popular sports in the United States." }
+  ], 
+  "stream": true
+}
+
+#### Step 15: Excercise the Coordinator Machine by submitting the followup prompt 
+### Execute using VS Code's Copy Request as cURL because VS Code don't know how to handle streaming API
+POST {{host}}/api/mai/v1/chat/completions
+Content-Type: application/json
+Authorization: bearer {{apiKey}}
+
+{ 
+  "model": "{{agentCollectionName}}",
+  "messages": [ 
+    { "role": "user", "content": "What are the teams in the most popular sports." }
+  ], 
+  "stream": true
+}
+
+### Step 16: view the logs
+GET {{host}}/api/mai/v1/logs
+Authorization: bearer {{apiKey}}
