@@ -1,0 +1,147 @@
+### Configuration 
+@host = http://{{$dotenv HOST_IP_ADDRESS}}:8083
+@developerIdToken={{$dotenv DEVELOPER_ID_TOKEN}}
+@clientId={{$dotenv CLIENT_ID}}
+@apiKey={{$dotenv API_KEY}}
+
+@agentCollectionName={{$dotenv AGENT_COLLECTION_NAME}}
+
+### Microservice
+@maiTarName = mai-v1-1.7.0.tar
+
+###Settings
+@tokenScope=openid edge:mcm edge:clusters edge:account:associate
+@modelUrl={{$dotenv MODEL_URL}}
+
+### Node Info
+### Set the following values using the information returned from each constituent node's setup.http file.
+@nodeId1_AI-CHAT-1 = {{$dotenv NODE_ID_AGENT_1}}
+@nodeId2_AI-CHAT-2 = {{$dotenv NODE_ID_NVIDIA_AGENT}}
+
+@nodeId_COORDINATOR = {{$dotenv NODE_ID_COORDINATOR}}
+
+### Setup API's 
+
+#### Step 1: Query the target device. This call returns the NODE_ID for the device and verify that the device is accessible.
+# @name jsonrpc
+POST {{host}}/jsonrpc/v1
+Content-Content-Type: application/json
+
+{"jsonrpc": "2.0", "method": "getMe", "params": [], "id": 1}
+
+
+#####
+#### Step 2: Get edgeIdToken
+# @name jsonrpc
+POST {{host}}/jsonrpc/v1
+Content-Content-Type: application/json
+
+{"jsonrpc": "2.0", "method": "getEdgeIdToken", "params": [], "id": 1}
+
+#### Save Token  to the local file variable
+@edgeIdToken={{jsonrpc.response.body.$.result.id_token}}
+
+
+#####
+#### Step 3: Get Access Token
+# @name mid
+POST https://devconsole-mid.mimik.com/token
+Content-Type: application/x-www-form-urlencoded
+
+client_id={{clientId}}
+&grant_type=id_token_signin
+&id_token={{developerIdToken}}
+&scope={{tokenScope}}
+&edge_id_token={{edgeIdToken}}
+
+####
+@edgeToken={{mid.response.body.$.access_token}}
+
+
+####
+#### Step 4: Associate device with account 
+POST {{host}}/jsonrpc/v1
+Content-Content-Type: application/json
+
+{"jsonrpc": "2.0", "method": "associateAccount", "params": ["{{edgeToken}}"], "id": 1}
+
+####
+#### Step 5: Verify that the miscroservices are running
+GET {{host}}/mcm/v1/containers
+Authorization: Bearer {{edgeToken}}
+
+######
+### Step 6: Verify that the model has been deployed 
+GET {{host}}/api/mim/v1/models
+Content-Type: application/json
+Authorization: bearer {{apiKey}}
+
+######
+#### Step 7: Declare the named Agent Collection using the file variable agentCollectionName as the unique identifier along with the machines and associated models that make up the collection
+POST {{host}}/api/mai/v1/models
+Content-Type: application/json
+Authorization: bearer {{apiKey}}
+
+{
+  "id": "{{agentCollectionName}}",
+  "object": "model",
+  "modelfile": {
+    "prompts": [
+      {
+        "url": "{{nodeId1_AI-CHAT-1}}@mmesh/{{clientId}}/mim/v1/chat/completions",
+        "model": "lmstudio-ai/gemma-2b-it-GGUF",
+        "apikey": "Bearer {{apiKey}}",
+        "required": true
+      },
+      {
+        "url": "{{nodeId2_AI-CHAT-2}}@mmesh/{{clientId}}/mim/v1/chat/completions",
+        "model": "lmstudio-ai/gemma-2b-it-GGUF",
+        "apikey": "Bearer {{apiKey}}",
+        "required": false
+      }
+    ],
+    "summary": {
+      "template": "Given the responses from assistants below, synthesize the information to create a unified, concise summary. Provide a coherent answer that integrates these perspectives.\n-----\n\n${{mergedContent}}",
+      "url": "{{nodeId_COORDINATOR}}@mmesh/{{clientId}}/mim/v1/chat/completions",
+      "model": "lmstudio-ai/gemma-2b-it-GGUF",
+      "apikey": "Bearer {{apiKey}}",
+      "required": true
+    }
+  },
+  "owned_by": "mimik"
+}
+
+######
+#### Step 8: Exercise the Agent Collectoin by sending in an initial prompt
+### Execute using VS Code's Copy Request as cURL because VS Code doesn't know how to handle streaming API's
+POST {{host}}/api/mai/v1/chat/completions
+Content-Type: application/json
+Authorization: bearer {{apiKey}}
+
+{ 
+  "model": "{{agentCollectionName}}",
+  "messages": [ 
+    { "role": "user", "content": "Give me the 3 most popular sports in the United States." }
+  ], 
+  "stream": true
+}
+
+######
+#### Step 9: Send in a follow up prompt
+### Execute using VS Code's Copy Request as cURL because VS Code doesn't know how to handle streaming API's
+POST {{host}}/api/mai/v1/chat/completions
+Content-Type: application/json
+Authorization: bearer {{apiKey}}
+
+{ 
+  "model": "{{agentCollectionName}}",
+  "messages": [ 
+    { "role": "user", "content": "What are the teams in the most popular sports." }
+  ], 
+  "stream": true
+}
+
+######
+### Step 10: view the logs
+GET {{host}}/api/mai/v1/logs
+Authorization: bearer {{apiKey}}

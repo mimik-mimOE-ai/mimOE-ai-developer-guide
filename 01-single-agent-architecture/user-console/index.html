@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Agent Prompt Results Unified By mimOE.ai</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/marked/2.0.3/marked.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/dompurify/2.3.0/purify.min.js"></script>
+    <script src="sitedata.js"></script>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        #chat-container {
+            border: 1px solid #ccc;
+            height: 400px;
+            overflow-y: scroll;
+            padding: 10px;
+            margin-bottom: 20px;
+        }
+        #user-input {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 10px;
+        }
+        #send-button {
+            padding: 10px 20px;
+        }
+        .user-message, .ai-message {
+            padding: 5px;
+            margin: 5px 0;
+            border-radius: 5px;
+        }
+        .user-message {
+            background-color: #e6f2ff;
+        }
+        .ai-message {
+            background-color: #f0f0f0;
+        }
+        .ai-message pre {
+            background-color: #f8f8f8;
+            border: 1px solid #ddd;
+            border-radius: 3px;
+            padding: 10px;
+            overflow-x: auto;
+        }
+        .ai-message code {
+            background-color: #f0f0f0;
+            padding: 2px 4px;
+            border-radius: 3px;
+        }
+    </style>
+</head>
+<body>
+    <h1>Agent Prompt Results Unified By mimOE.ai</h1>
+    <div id="chat-container"></div>
+    <textarea id="user-input" placeholder="Type your message here..."></textarea>
+    <button id="send-button">Send</button>
+
+    <script>
+        const chatContainer = document.getElementById('chat-container');
+        const userInput = document.getElementById('user-input');
+        const sendButton = document.getElementById('send-button');
+        const API_KEY = `${config.API_KEY}`;
+        const API_URL =`http://${config.COORDINATOR_IP_ADDRESS}:8083/api/mai/v1/chat/completions`
+        marked.setOptions({
+            highlight: function(code, lang) {
+                return code;
+            }
+        });
+
+        function addMessage(role, content) {
+            const messageDiv = document.createElement('div');
+            messageDiv.className = role === 'User' ? 'user-message' : 'ai-message';
+            messageDiv.innerHTML = `<strong>${role}:</strong> ${content}`;
+            chatContainer.appendChild(messageDiv);
+            chatContainer.scrollTop = chatContainer.scrollHeight;
+            return messageDiv;
+        }
+
+        function renderMarkdown(text) {
+            return DOMPurify.sanitize(marked(text));
+        }
+
+        async function sendMessage() {
+            const message = userInput.value.trim();
+            if (!message) return;
+
+            addMessage('User', message);
+            userInput.value = '';
+            sendButton.disabled = true;
+
+            const aiMessageDiv = addMessage('AI', '');
+
+            try {
+                const response = await fetch(API_URL, {
+                    method: 'POST',
+                    headers: {
+                        'Authorization': `Bearer ${API_KEY}`,
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({
+                        model: `${config.AGENT_COLLECTION_NAME}`,
+                        messages: [{ role: "user", content: message }],
+                        stream: true
+                    })
+                });
+
+                const reader = response.body.getReader();
+                const decoder = new TextDecoder();
+                let aiResponse = '';
+
+                while (true) {
+                    const { done, value } = await reader.read();
+                    if (done) break;
+
+                    const chunk = decoder.decode(value);
+                    const lines = chunk.split('\n');
+                    const parsedLines = lines
+                        .map(line => line.replace(/^data: /, '').trim())
+                        .filter(line => line !== '' && line !== '[DONE]')
+                        .map(line => JSON.parse(line));
+
+                    for (const parsedLine of parsedLines) {
+                        const { choices } = parsedLine;
+                        const { delta } = choices[0];
+                        const { content } = delta;
+                        if (content) {
+                            aiResponse += content;
+                            aiMessageDiv.innerHTML = `<strong>AI:</strong> ${renderMarkdown(aiResponse)}`;
+                            chatContainer.scrollTop = chatContainer.scrollHeight;
+                        }
+                    }
+                }
+            } catch (error) {
+                console.error('Error:', error);
+                aiMessageDiv.innerHTML = '<strong>AI:</strong> An error occurred while processing your request.';
+            }
+
+            sendButton.disabled = false;
+        }
+
+        window.addEventListener('load', function() {
+            console.log(JSON.stringify(config));
+        });
+
+        sendButton.addEventListener('click', sendMessage);
+        userInput.addEventListener('keypress', (e) => {
+            if (e.key === 'Enter' && !e.shiftKey) {
+                e.preventDefault();
+                sendMessage();
+            }
+        });
+    </script>
+</body>
+</html>
