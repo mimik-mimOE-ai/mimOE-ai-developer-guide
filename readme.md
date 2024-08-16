@@ -17,7 +17,7 @@
   - [What You Need to Know Before You Start](#what-you-need-to-know-before-you-start)
 - [Getting Started](#getting-started)
     - [Getting Essential Configuration Information](#getting-essential-configuration-information)
-      - [Getting the clientID token and the developerId token](#getting-the-clientid-token-and-the-developerid-token)
+      - [Getting the clientId token and the developerId token](#getting-the-clientid-token-and-the-developerid-token)
       - [Getting a nodeId](#getting-a-nodeid)
     - [Working With setup.http Files](#working-with-setuphttp-files)
 - [Scenario Implementation](#scenario-implementation)
@@ -182,7 +182,7 @@ To get the various devices within the mimik Service Mesh integrated into mimOE.a
 
 The sections that follow describe the details of the required information listed above.
 
-### Getting the clientID token and the developerId token
+### Getting the clientId token and the developerId token
 
 The figure below describes the steps necessary to get the `clientId token` and `developerId token` from the [mimik Developer Portal](https://console.mimik.com/). A developer will navigate to the Developer Portal and do the steps described in the figure below according to the callout numbers in the illustration.
 
