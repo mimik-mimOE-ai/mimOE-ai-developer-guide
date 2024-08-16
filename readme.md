@@ -4,11 +4,12 @@
 - [Introduction to mimiOE.ai](#introduction-to-mimoeai)
   - [Welcome to mimiOE.ai](#welcome-to-mimoeai)
   - [What is mimOE.ai?](#what-is-mimoeai)
-  - [Key features and benefits of mimOE.ai](#key-features-and-benefits-of-mimoeai)
+  - [Key Features and Benefits of mimOE.ai](#key-features-and-benefits-of-mimoeai)
 - [Core Concepts and Architecture](#core-concepts-and-architecture)
   - [Understanding the Basic Architecture](#understanding-the-basic-architecture)
   - [The Nature and Use of mimOE.ai](#the-nature-and-use-of-mimoeai)
-  - [AIfocused Microservices (mILM, mAI, mKB, mModelStore)](ai-focused-microservices-(milm,-mai,-mkb,-mmodelstore))
+  - [AI Focused Microservices (mILM, mAI, mKB, mModelStore)](#ai-focused-microservices-(milm,-mai,-mkb,-mmodelstore)))
+- [Key Components](#key-components)
 - [What You Need to Know Before You Start](#what-you-need-to-know-before-you-start)
 - [What You Need to Have On Hand](#what-you-need-to-have-on-hand)
 - [What You'll be Doing](#what-youll-be-doing)
@@ -65,7 +66,7 @@ The figure below describes the various deployment units.
 
 From a developer's point of view, the vital thing to understand about mimOE.ai is that the technology is a collection of deployment units. edgeEngine is the deployment unit that needs to be installed on any machine that implements mimOE.ai. The other deployment units are the various AI-focused microservices published by mimik, `mILM`, `mAI`, `mKB`, and `mModelStore`. You'll learn how to use these microservices in sections to come.
 
-## Key features and benefits of mimOE.ai
+## Key Features and Benefits of mimOE.ai
 
 Its key features are:
 
@@ -102,7 +103,7 @@ A computing device is deemed a Coordinator Machine when it runs the `mAI` micros
 
 mimOE utilizes mimik's edgeEngine runtime and mimik Service Mesh to enhance artificial intelligence processing capabilities in application development. Using mimOE.ai a developer can interact with LLMs that run directly on any number of computing devices. Such devices can be a standard computer on a developer machine, a server in a data center, a mobile device such as a cell phone or tablet, or hardware optimized for AI processing such as those computing devices manufactured by Nvidia.
 
-## AI focused Microservices (mILM, mAI, mKB, mModelStore)
+## AI Focused Microservices (mILM, mAI, mKB, mModelStore)
 
 mimOE publishes several microservices that execute under the edgeEngine runtime on a given computing device. These microservices are:
 
@@ -236,7 +237,7 @@ The important thing to understand about `setup.http` files is that they are inte
 
 Developers will generate and configure `.env` files when performing the hands-on demonstration scenarios described in this documentation. Typically, `.env` files will be created automatically against a template file using a bash script.
 
-# Scenario implementation
+# Scenario Implementation
 
 ## What You Need to Have On Hand
 
@@ -247,7 +248,7 @@ When it comes time to do the hands-on demonstration projects, you'll need to hav
 * Working familiarity using the Rest Client. (Read [this tutorial](https://medium.com/lseg-developer-community/how-to-test-rest-api-with-visual-studio-code-rest-client-extensions-9f2e061d0299) to get a basic understanding of how to use the Rest Client.)
 * A set of computers running the Ubuntu 22.04 with port 8083 exposed. These computers can be distinct physical AMD and ARM, such as Raspberry Pi or AMD virtual machines (VM) running Ubuntu 22.04. Also, these computers must be running the latest version of edgeEngine for mimOE.ai. This is a version of edgeEngine formally called `mimOE-SE-Linux v3.12.0` and can be downloaded from the [mimOE-SE-Linux v3.12.0 Release Page on GitHub](https://github.com/mimik-mimOE/mimOE-SE-Linux/).
 
-## Hardware and software recommendations
+## Hardware and Software Recommendations
 
 As mentioned previously, for purposes of demonstration and education, you will create 3 scenarios of increasing complexity in a progressive manner. Each scenario builds on concepts and work done in the previous scenario.
 
@@ -272,7 +273,7 @@ In Scenario 3, you will add two more Agent Machines to the mimik Service Mesh an
 The table below describes the machine and releases of mimOE-SE-Linux v3.12.0 that you will need to have available for each scenario.
 
 |Scenario|Machine|Type|Version of mimOE-SE-Linux|
-|----|----|----|----|
+|---------|----|----|----|
 |Scenario 1|Coordinator Machine|ARM or AMD|Click to download: [mimOE-SE-linux-developer-AMD64-v3.12.0.tar](https://github.com/mimik-mimOE/mimOE-SE-Linux/releases/download/v3.12.0/mimOE-SE-linux-developer-AMD64-v3.12.0.tar) or [mimOE-SE-linux-developer-ARM64-v3.12.0.tar](https://github.com/mimik-mimOE/mimOE-SE-Linux/releases/download/v3.12.0/mimOE-SE-linux-developer-ARM64-v3.12.0.tar)|
 | |Agent Machine|ARM or AMD|mimOE-SE-linux-developer-AMD64-v3.12.0.tar or mimOE-SE-linux-developer-ARM64-v3.12.0.tar|
 |Scenario 2|Existing Coordinator Machine|Installed in Scenario 1| |
