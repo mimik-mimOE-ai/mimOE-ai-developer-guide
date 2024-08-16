@@ -31,6 +31,7 @@
     - [Connecting the User Console to the Coordinator Machine](#connecting-the-user-console-to-the-coordinator-machine)
   - [Setting Up and Running an Agent Collection that includes an Nvidia Agent Machine](#setting-up-and-running-an-agent-collection-that-includes-an-nvidia-agent-machine)
     - [Adding an Nvidia Orin Jetson Nano/AGX device as an Agent Machine](#adding-an-nvidia-orin-jetson-nanoagx-device-as-an-agent-machine)
+    - [Loading an AI model to the Agent Machine](#loading-an-ai-model-to-the-agent-machine)
     - [Declaring a new Agent Collection that includes the Nvidia machine on the Coordinator Machine](#declaring-a-new-agent-collection-that-includes-the-nvidia-machine-on-the-coordinator-machine)
     - [Connecting a second instance of the User Console web server to the Coordinator Machine](#connecting-a-second-instance-of-the-user-console-web-server-to-the-coordinator-machine)
   - [Setting Up and Running a Multi-Agent Collection](#setting-up-and-running-a-multi-agent-collection)
