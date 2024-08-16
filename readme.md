@@ -1,7 +1,7 @@
 # Table of Contents
 
 - [Table of Contents](#table-of-contents)
-- Introduction to mimiOE.ai
+- [Introduction to mimiOE.ai](#introduction-to-mimiOE.ai)
   - Welcome to mimiOE.ai
   - [What is mimOE.ai?](#what-is-mimoeai)
   - Key feature and benefits
@@ -341,7 +341,7 @@ To learn how to add an Nvidia Orin Jetson Nano/AGX device as an Agent Machine on
 
 ### Loading an AI model to the Agent Machine
 
-To learn how to load an AI model to the Agent Machine, go [here](./02-nvidia-architecture/nvidia-agent-machine/readme.md#).
+To learn how to load an AI model to the Agent Machine, go [here](./02-nvidia-architecture/nvidia-agent-machine/readme.md#Step-9).
 
 ### Declaring a new Agent Collection that includes the Nvidia machine on the Coordinator Machine
 
@@ -353,7 +353,7 @@ To learn how to create a second instance of the User Console web server that con
 
 ----
 
-Please follow the instructions for setting up and using the new Agent Collection, which includes the NVidia Agent Machine, before proceeding to the next scenario.
+Please follow the instructions for setting up and using the new Agent Collection, which includes the NVidia Agent Machine, before proceeding to the following scenario.
 
 ## Setting Up and Running a Multi-Agent Collection
 
@@ -363,24 +363,24 @@ This scenario enhances the previous one. In this scenario, you will add two more
 
 After you have the two additional Agent Machines up and running, you will return the Coordinator Machine and define an additional Agent Collection that will include both the Agent Machine provisioned in the previous scenario and the Nvidia Agent Machine.
 
-Finally, you will configure and run an additional instance of the User Console web server that will be bound to the new Agent Collection you created on the Coordinator Machine. This additional User Console web server will be listening on a new, distinct port.
+Finally, you will configure and run an additional User Console web server instance bound to the new Agent Collection you created on the Coordinator Machine. This additional User Console web server will listen on a new, distinct port.
 
 As in the demonstration scenario executed previously, getting a Multi-Agent Collection up and running is a three-part undertaking as follows:
 
 * Getting two additional Agent Machines up and running
-* Configuring the Coordinator Machine to support an additional Agent Collection that includes the new Agent Machines as well as those Agent Machines created previously.
+* Configuring the Coordinator Machine to support an additional Agent Collection that includes the new Agent Machines and those Agent Machines created previously.
 * Connecting a new instance of User Console to the Coordinator Machine via its nodeId. The new instance of the User Console web server for this scenario will run on a new distinct port and will be bound to the Agent Collection created in this demonstration scenario.
 
 ### Adding Multiple Agent Machines to the mimik Service Mesh
 
 To learn how to add new Agent Machines to the mimik Service Mesh go [here](./03-multi-agent-architecture/agent-machines/).
 
-### Declaring a new Agent Collection on  the Coordinator Machine 
+### Declaring a new Agent Collection on  the Coordinator's Machine 
 
-To learn how to update the Coordinator Machine to support the additional Agent Machines go [here](./03-multi-agent-architecture/coordinator-machine/).
+To learn how to update the Coordinator Machine to support the additional Agent Machines, go [here](./03-multi-agent-architecture/coordinator-machine/).
 
 ### Connecting a new instance of the User Console web server to the Coordinator Machine
 
-To learn how to create an instance of the User Console web server that is bound to the newly created Agent Collection on the Coordinator Machine, go [here](./03-multi-agent-architecture/user-console/).
+To learn how to create an instance of the User Console web server bound to the newly created Agent Collection on the Coordinator Machine, go [here](./03-multi-agent-architecture/user-console/).
 
 
