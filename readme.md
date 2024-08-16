@@ -36,6 +36,7 @@
     - [Connecting a second instance of the User Console web server to the Coordinator Machine](#connecting-a-second-instance-of-the-user-console-web-server-to-the-coordinator-machine)
   - [Setting Up and Running a Multi-Agent Collection](#setting-up-and-running-a-multi-agent-collection)
     - [Adding Multiple Agent Machines to the mimik Service Mesh](#adding-multiple-agent-machines-to-the-mimik-service-mesh)
+    - [Loading AI Models to the Agent Machines](#loading-ai-models-to-the-agent-machines)
     - [Declaring a new Agent Collection on  the Coordinator Machine](#declaring-a-new-agent-collection-on--the-coordinator-machine)
     - [Connecting a new instance of the User Console web server to the Coordinator Machine](#connecting-a-new-instance-of-the-user-console-web-server-to-the-coordinator-machine)
 
@@ -226,15 +227,14 @@ Date: Sat, 10 Aug 2024 16:23:07 GMT
 
 The `nodeId` is the value of the `result.nodeId` property in the JSON data returned by the cURL command.
 
-Also, a developer can discover a machine's `nodeId` by running a specific command from within the `setup.http` file that provisions a particular machine. Using a [VS Code REST Client extension](https://marketplace.visualstudio.com/items?itemName=humao.rest-client) `setup.http` file is discussed in the next section.
+Also, a developer can discover a machine's `nodeId` by running a specific command from within the `setup.http` file that provisions a particular machine. The next section discusses using a [VS Code REST Client extension](https://marketplace.visualstudio.com/items?itemName=humao.rest-client) `setup.http` file.
 
 
 ## Working With setup.http Files
 
-The hands-on demonstration scenarios that are described in the documentation use the [VS Code REST Client extension](https://marketplace.visualstudio.com/items?itemName=humao.rest-client) to automatically execute cURL commands. The commands are described and executed from within a file named `setup.http`. There will be various `setup.http` files used throughout the demonstration scenarios. There will be `setup.http` files to provision and exercise Agent Machines. Also, there will be `setup.http` files that are intended to provision and exercise Coordinator Machines. (The nature and use of Agent and Coordinator Machines were described in earlier sections.) 
+The hands-on demonstration scenarios described in the documentation use the [VS Code REST Client extension](https://marketplace.visualstudio.com/items?itemName=humao.rest-client) to execute cURL commands automatically. The commands are defined and executed within a file named `setup.http`. There will be various `setup.http` files used throughout the demonstration scenarios. There will be `setup.http` files to provision and exercise Agent Machines. Also, there will be `setup.http` files intended to provision and exercise Coordinator Machines. (The nature and use of Agent and Coordinator Machines were described in earlier sections.) 
 
-The important thing to understand about `setup.http` files is that they are intended to make executing commands on a machine in the mimik Service Mesh easier and less error-prone. Also, it's important to understand that each `setup.http.` file will have a particular `.env` file associated with it. The `.env` file defines the environment variables that provide runtime information that the `setup.http` file needs to execute  properly the commands against its intended machine. For example, the values for `HOST_IP_ADDRESS`, `DEVELOPER_ID_TOKEN`, `CLIENT_ID`, and `API_KEY` shown in the snippet of the `setup.http` file shown below are defined as environment variables within the associated `.env` file.
-
+The critical thing to understand about `setup.http` files is that they are intended to make executing commands on a machine in the mimik Service Mesh easier and less error-prone. Also, it's important to understand that each `setup.http.` file will have a particular `.env` file associated with it. The `.env` file defines the environment variables that provide runtime information that the `setup.http` file needs to execute  properly the commands against its intended machine. For example, the values for `HOST_IP_ADDRESS`, `DEVELOPER_ID_TOKEN`, `CLIENT_ID`, and `API_KEY` shown in the snippet of the `setup.http` file shown below are defined as environment variables within the associated `.env` file.
 
 ![setup http example](./images/setupHttpExample.png)
 
@@ -263,14 +263,13 @@ To review, these scenarios are:
 
 (The details about the nature and use of an Agent Machine and a Coordinator Machine are described in the section [ Understanding the Basic Architecture](#understanding-the-basic-architecture) that follows later on in this document.)
   
-
 These demonstration scenarios involve running several computers on the mimik Service Mesh. These computers will need to run the latest edgeEngine version for mimOE.ai.
 
 For Scenario 1, we recommend using an AMD computer for the Coordinator Machine and an ARM or AMD computer for the single Agent Machine.
 
 In Scenario 2, we demonstrate how to incorporate a Nvidia Orin Jetson Nano device into the mimik Service Mesh. Thus, you will need to have one available. In Scenario 2, you will use the existing Coordinator Machine you created in Scenario 1.
 
-In Scenario 3, you will add two more Agent Machines to the mimik Service Mesh and configure mimOE.ai to support the additional computers, AMD or ARM computers.
+In Scenario 3, you will add two more Agent Machines to the mimik Service Mesh and configure mimOE.ai to support the additional AMD or ARM computers.
 
 
 The table below describes the machine and releases of mimOE-SE-Linux v3.12.0 that you will need to have available for each scenario.
@@ -314,7 +313,7 @@ Getting a single Agent Collection up and running is a three-part undertaking as 
 
 The instructions for getting a single Agent Machine up and running are [here](01-single-agent-architecture/agent-machine/)
 
-### Loading an AI model to the Agent Machine
+### Loading an AI Model to the Agent Machine
 
 The instructions for loading an AI model to the Agent Machine are [here](01-single-agent-architecture/agent-machine/readme.md#Step-9)
 
@@ -346,7 +345,7 @@ The figure below shows the demonstration scenario you'll be able to implement.
 
 To learn how to add an Nvidia Orin Jetson Nano/AGX device as an Agent Machine on the mimik Service Mesh, go [here](./02-nvidia-architecture/nvidia-agent-machine/).
 
-### Loading an AI model to the Nvidia device as an Agent Machine
+### Loading an AI Model to the Nvidia Device as an Agent Machine
 
 To learn how to load an AI model to the Agent Machine, go [here](./02-nvidia-architecture/nvidia-agent-machine/readme.md#Step-9).
 
@@ -380,7 +379,11 @@ As in the demonstration scenario executed previously, getting a Multi-Agent Coll
 
 ### Adding Multiple Agent Machines to the mimik Service Mesh
 
-To learn how to add new Agent Machines to the mimik Service Mesh go [here](./03-multi-agent-architecture/agent-machines/).
+To learn how to add new Agent Machines to the mimik Service Mesh, go [here](./03-multi-agent-architecture/agent-machines/).
+
+### Loading AI Models to the Agent Machines
+
+To learn how to load a model to the Agent Machines, go [here](./03-multi-agent-architecture/agent-machines/readme.md).
 
 ### Declaring a new Agent Collection on  the Coordinator's Machine 
 
