@@ -19,7 +19,7 @@
     - [Getting Essential Configuration Information](#getting-essential-configuration-information)
       - [Getting the clientId token and the developerId token](#getting-the-clientid-token-and-the-developerid-token)
       - [Getting a nodeId](#getting-a-nodeid)
-    - [Working With setup.http Files](#working-with-setuphttp-files)
+      - [Working With setup.http Files](#working-with-setuphttp-files)
 - [Scenario Implementation](#scenario-implementation)
     - [What You Need to Have On Hand](#what-you-need-to-have-on-hand)
     - [Hardware and Software Recommendations](#hardware-and-software-recommendations)
@@ -230,7 +230,7 @@ The `nodeId` is the value of the `result.nodeId` property in the JSON data retur
 Also, a developer can discover a machine's `nodeId` by running a specific command from within the `setup.http` file that provisions a particular machine. The next section discusses using a [VS Code REST Client extension](https://marketplace.visualstudio.com/items?itemName=humao.rest-client) `setup.http` file.
 
 
-## Working With setup.http Files
+### Working With setup.http Files
 
 The hands-on demonstration scenarios described in the documentation use the [VS Code REST Client extension](https://marketplace.visualstudio.com/items?itemName=humao.rest-client) to execute cURL commands automatically. The commands are defined and executed within a file named `setup.http`. There will be various `setup.http` files used throughout the demonstration scenarios. There will be `setup.http` files to provision and exercise Agent Machines. Also, there will be `setup.http` files intended to provision and exercise Coordinator Machines. (The nature and use of Agent and Coordinator Machines were described in earlier sections.) 
 
