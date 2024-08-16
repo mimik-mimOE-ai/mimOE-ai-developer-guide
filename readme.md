@@ -8,21 +8,22 @@
 - [Core Concepts and Architecture](#core-concepts-and-architecture)
   - [Understanding the Basic Architecture](#understanding-the-basic-architecture)
   - [The Nature and Use of mimOE.ai](#the-nature-and-use-of-mimoeai)
-  - [AI Focused Microservices (mILM, mAI, mKB, mModelStore)](#ai-focused-microservices-(milm,-mai,-mkb,-mmodelstore)))
+  - [AI Focused Microservices](#ai-focused-microservices)
 - [Key Components](#key-components)
-- [What You Need to Know Before You Start](#what-you-need-to-know-before-you-start)
-- [What You Need to Have On Hand](#what-you-need-to-have-on-hand)
-- [What You'll be Doing](#what-youll-be-doing)
-- [The Nature and Use of mimOE.ai](#the-nature-and-use-of-mimoeai)
-- [Understanding the Basic Architecture](#understanding-the-basic-architecture)
   - [Understanding Agent Machines](#understanding-agent-machines)
   - [Understanding the Coordinator Machine](#understanding-the-coordinator-machine)
   - [Understanding Agent Collections](#understanding-agent-collections)
+- [Prerequisites](#prerequisites)
+  - [What You Need to Know Before You Start](#what-you-need-to-know-before-you-start)
+- [Getting Started](#getting-started)
+    - [Getting Essential Configuration Information](#getting-essential-configuration-information)
+      - [Getting the clientID token and the developerId token](#getting-the-clientid-token-and-the-developerid-token)
+      - [Getting a nodeId](#getting-a-nodeid)
+    - [Working With setup.http Files](#working-with-setuphttp-files)
+- [Scenario Implementation](#scenario-implementation)
+    - [What You Need to Have On Hand](#what-you-need-to-have-on-hand)
+    - [Hardware and Software Recommendations](#hardware-and-software-ecommendations)
 - [Implementing the Demonstration Scenarios](#implementing-the-demonstration-scenarios)
-  - [Getting Essential Configuration Information](#getting-essential-configuration-information)
-    - [Getting the clientID token and the developerId token](#getting-the-clientid-token-and-the-developerid-token)
-    - [Getting a nodeId](#getting-a-nodeid)
-  - [Working With setup.http Files](#working-with-setuphttp-files)
   - [Setting up and running a Single Agent Collection scenario](#setting-up-and-running-a-single-agent-collection-scenario)
     - [Getting a single Agent Machine up and running](#getting-a-single-agent-machine-up-and-running)
     - [Getting the Coordinator Machine up and running](#getting-the-coordinator-machine-up-and-running)
@@ -103,7 +104,7 @@ A computing device is deemed a Coordinator Machine when it runs the `mAI` micros
 
 mimOE utilizes mimik's edgeEngine runtime and mimik Service Mesh to enhance artificial intelligence processing capabilities in application development. Using mimOE.ai a developer can interact with LLMs that run directly on any number of computing devices. Such devices can be a standard computer on a developer machine, a server in a data center, a mobile device such as a cell phone or tablet, or hardware optimized for AI processing such as those computing devices manufactured by Nvidia.
 
-## AI Focused Microservices (mILM, mAI, mKB, mModelStore)
+## AI Focused Microservices
 
 mimOE publishes several microservices that execute under the edgeEngine runtime on a given computing device. These microservices are:
 
