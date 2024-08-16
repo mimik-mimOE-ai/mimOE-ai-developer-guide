@@ -290,11 +290,11 @@ The details of each release, as well as Quickstart instructions for installation
 
 ## Implementing the Demonstration Scenarios
 
-The first scenario you'll run is a single-agent scenario under Agent Collection.
+The `first scenario` you'll run is a single-agent scenario under Agent Collection.
 
-In the second scenario, you'll add an Nvidia Orin device to the mimik Service Mesh as an Agent Machine. You'll then create a new Agent Collection that includes the Agent Machine you created in the first scenario and the Nvidia Agent Machine. For this scenario, you’ll also make a distinctly named Agent Collection on the Coordinator Machine.
+In the `second scenario`, you'll add an Nvidia Orin device to the mimik Service Mesh as an Agent Machine. You'll then create a new Agent Collection that includes the Agent Machine you created in the first scenario and the Nvidia Agent Machine. For this scenario, you’ll also make a distinctly named Agent Collection on the Coordinator Machine.
 
-In the third scenario, you'll add two more Agent Machines to the mimik Service Mesh and run all under another distinctly named Agent Collection.
+In the `third scenario`, you'll add two more Agent Machines to the mimik Service Mesh and run all under another distinctly named Agent Collection.
 
 ### Scenario 1: Setting up and running a Single Agent Collection scenario
 
