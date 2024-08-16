@@ -1,6 +1,5 @@
 # Table of Contents
 
-- [Table of Contents](#table-of-contents)
 - [Introduction to mimiOE.ai](#introduction-to-mimoeai)
   - [Welcome to mimiOE.ai](#welcome-to-mimoeai)
   - [What is mimOE.ai?](#what-is-mimoeai)
