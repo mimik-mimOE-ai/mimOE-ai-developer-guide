@@ -20,7 +20,7 @@
       - [Getting the clientId token and the developerId token](#getting-the-clientid-token-and-the-developerid-token)
       - [Getting a nodeId](#getting-a-nodeid)
     - [Working With setup.http Files](#working-with-setuphttp-files)
-- [Scenario Implementation](#scenario-implementation)
+- [Scenario Implementations](#scenario-implementations)
     - [What You Need to Have On Hand](#what-you-need-to-have-on-hand)
     - [Hardware and Software Recommendations](#hardware-and-software-recommendations)
     - [Implementing the Demonstration Scenarios](#implementing-the-demonstration-scenarios)
@@ -240,7 +240,7 @@ The critical thing to understand about `setup.http` files is that they are inten
 
 Developers will generate and configure `.env` files when performing the hands-on demonstration scenarios described in this documentation. Typically, `.env` files will be created automatically against a template file using a bash script.
 
-# Scenario Implementation
+# Scenario Implementations
 
 ## What You Need to Have On Hand
 
