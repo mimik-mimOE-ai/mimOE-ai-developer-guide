@@ -287,7 +287,7 @@ The details of each release, as well as Quickstart instructions for installation
 
 The first scenario you'll run is a single-agent scenario under Agent Collection.
 
-In the second scenario, you'll add an Nvidia Orin device to the mimik Service Mesh as an Agent Machine. You'll then create a new Agent Collection that includes the Agent Machine you created in the first scenario and the Nvidia Agent Machine. You’ll also make a distinctly named Agent Collection on the Coordinator Machine for this scenario.
+In the second scenario, you'll add an Nvidia Orin device to the mimik Service Mesh as an Agent Machine. You'll then create a new Agent Collection that includes the Agent Machine you created in the first scenario and the Nvidia Agent Machine. For this scenario, you’ll also make a distinctly named Agent Collection on the Coordinator Machine.
 
 In the third scenario, you'll add two more Agent Machines to the mimik Service Mesh and run all under another distinctly named Agent Collection.
 
@@ -309,7 +309,7 @@ The instructions for getting a single Agent Machine up and running are [here](01
 
 ### Loading an AI model to the Agent Machine
 
-The instructions for loading an AI model to the Agen Machine are 
+The instructions for loading an AI model to the Agent Machine are in step 9 of [here](01-single-agent-architecture/agent-machine/#Step9)
 
 ### Getting the Coordinator Machine up and running
 
@@ -321,37 +321,39 @@ The instructions for connecting the User Console to the Coordinator Machine are 
 
 ---
 
-Follow the instructions in both the Agent and Coordinator Machine documentation before moving on to the next scenario.
-
 ## Setting Up and Running an Agent Collection that includes an Nvidia Agent Machine
 
-**NOTE:** This demonstration scenario is only to be implemented after you've completed the first scenario, which demonstrates how to use mimOE.ai to work with a single Agent Collection.
+**NOTE:** This demonstration scenario will only be implemented after completing the first scenario, which demonstrates how to use mimOE.ai to work with a single Agent Collection.
 
 ---
 
-In this scenario, you are going to add an Nvidia Orin Jetson Nano/AGX device to the mimik Service Mesh. Then you will configure that NVidia device to be an Agent Machine. After the Nvidia Orin Jetson Nano/AGX device is up and running, you create a new, distinctly named Agent Collection on the existing Coordinator Machine that includes the Agent Machine created in the previous demonstration scenario as well as the newly created NVidia Agent Machine.
+In this scenario, you will add an Nvidia Orin Jetson Nano/AGX device to the mimik Service Mesh. Then, you will configure that NVidia device to be an Agent Machine. After the Nvidia Orin Jetson Nano/AGX device is up and running, you create a new, distinctly named Agent Collection on the existing Coordinator Machine, including the Agent Machine made in the previous demonstration scenario and the newly created NVidia Agent Machine.
 
-After all the Service Machines are up and running and the Coordinator Machine has been configured with the new Agent Collection, you'll implement an instance of the User Console web server that listens on a distinct port. This new instance of the User Console web server will be bound to the newly created Agent Collection that has both the previously created Agent Machine and the newly created Nvidia Agent Machine.
+After all the Service Machines are up and running and the Coordinator Machine has been configured with the new Agent Collection, you'll implement an instance of the User Console web server that listens on a distinct port. This latest User Console web server instance will be bound to the newly created Agent Collection with the previously created Agent Machine and the freshly created Nvidia Agent Machine.
 
-The figure below illustrates the demonstration scenario you'll implement.
+The figure below shows the demonstration scenario you'll be able to implement.
 
 ![Collection with Nvidia device](./images/nvidia-collection.png)
 
 ### Adding an Nvidia Orin Jetson Nano/AGX device as an Agent Machine
 
-To learn how to add an Nvidia Orin Jetson Nano/AGX device as an Agent Machine on the mimik Service Mesh go [here](./02-nvidia-architecture/nvidia-agent-machine/).
+To learn how to add an Nvidia Orin Jetson Nano/AGX device as an Agent Machine on the mimik Service Mesh, go [here](./02-nvidia-architecture/nvidia-agent-machine/).
+
+### Loading an AI model to the Agent Machine
+
+
 
 ### Declaring a new Agent Collection that includes the Nvidia machine on the Coordinator Machine
 
-To learn how to update the Coordinator Machine created in the last scenario with an additional Agent Collection that includes the newly added NVidia Agent Machine go [here](./02-nvidia-architecture/coordinator-machine/).
+To learn how to update the Coordinator Machine created in the last scenario with an additional Agent Collection that includes the newly added NVidia Agent Machine, go [here](./02-nvidia-architecture/coordinator-machine/).
 
 ### Connecting a second instance of the User Console web server to the Coordinator Machine
 
-To learn how to create a second instance of the User Console web server that connects to the Coordinator Machine that has the new Agent Collection with the Nvidia device, go [here](./02-nvidia-architecture/user-console/).
+To learn how to create a second instance of the User Console web server that connects to the Coordinator Machine with the new Agent Collection and the Nvidia device, go [here](./02-nvidia-architecture/user-console/).
 
 ----
 
-Follow the instructions for setting up and using the new Agent Collection that includes the NVidia Agent Machine before moving on the the next scenario.
+Please follow the instructions for setting up and using the new Agent Collection, which includes the NVidia Agent Machine, before proceeding to the next scenario.
 
 ## Setting Up and Running a Multi-Agent Collection
 
