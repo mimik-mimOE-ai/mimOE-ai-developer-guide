@@ -261,21 +261,21 @@ To review, these scenarios are:
 * **Scenario 2:** This is a Two-Agent Machine scenario that includes an Nvidia device that runs under the Coordinator created in Scenario 1.
 * **Scenario 3:** A multiple Agent Machine scenario that runs under the Coordinator Machine created in Scenario 1.
 
-(The details about the nature and use of an Agent Machine and a Coordinator Machine are described in the section [ Understanding the Basic Architecture](#understanding-the-basic-architecture) that follows later on in this document.)
+(The details about the nature and use of an Agent Machine and a Coordinator Machine are described in the section [Understanding the Basic Architecture](#understanding-the-basic-architecture) that follows later on in this document.)
   
 These demonstration scenarios involve running several computers on the mimik Service Mesh. These computers will need to run the latest edgeEngine version for mimOE.ai.
 
-For Scenario 1, we recommend using an AMD computer for the Coordinator Machine and an ARM or AMD computer for the single Agent Machine.
+For `Scenario 1`, we recommend using an AMD computer for the Coordinator Machine and an ARM or AMD computer for the single Agent Machine.
 
-In Scenario 2, we demonstrate how to incorporate a Nvidia Orin Jetson Nano device into the mimik Service Mesh. Thus, you will need to have one available. In Scenario 2, you will use the existing Coordinator Machine you created in Scenario 1.
+In `Scenario 2,` we demonstrate incorporating an Nvidia Orin Jetson Nano device into the mimik Service Mesh. Thus, you will need one available. In Scenario 2, you will use the existing Coordinator Machine you created in Scenario 1.
 
-In Scenario 3, you will add two more Agent Machines to the mimik Service Mesh and configure mimOE.ai to support the additional AMD or ARM computers.
+In `Scenario 3`, you will add two more Agent Machines to the mimik Service Mesh and configure mimOE.ai to support the additional AMD or ARM computers.
 
 
 The table below describes the machine and releases of mimOE-SE-Linux v3.12.0 that you will need to have available for each scenario.
 
-|Scenario  |Machine|Type|Version of mimOE-SE-Linux|
-|---------|----|----|----|
+|Scenario|Machine|Type|Version of mimOE-SE-Linux|
+|:---------|----|----|----|
 |Scenario 1|Coordinator Machine|ARM or AMD|Click to download: [mimOE-SE-linux-developer-AMD64-v3.12.0.tar](https://github.com/mimik-mimOE/mimOE-SE-Linux/releases/download/v3.12.0/mimOE-SE-linux-developer-AMD64-v3.12.0.tar) or [mimOE-SE-linux-developer-ARM64-v3.12.0.tar](https://github.com/mimik-mimOE/mimOE-SE-Linux/releases/download/v3.12.0/mimOE-SE-linux-developer-ARM64-v3.12.0.tar)|
 | |Agent Machine|ARM or AMD|mimOE-SE-linux-developer-AMD64-v3.12.0.tar or mimOE-SE-linux-developer-ARM64-v3.12.0.tar|
 |Scenario 2|Existing Coordinator Machine|Installed in Scenario 1| |
