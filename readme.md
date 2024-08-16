@@ -31,7 +31,7 @@
     - [Connecting the User Console to the Coordinator Machine](#connecting-the-user-console-to-the-coordinator-machine)
   - [Setting Up and Running an Agent Collection that includes an Nvidia Agent Machine](#setting-up-and-running-an-agent-collection-that-includes-an-nvidia-agent-machine)
     - [Adding an Nvidia Orin Jetson Nano/AGX device as an Agent Machine](#adding-an-nvidia-orin-jetson-nanoagx-device-as-an-agent-machine)
-    - [Loading an AI model to the Agent Machine](#loading-an-ai-model-to-the-agent-machine)
+    - [Loading an AI model to an Nvidia Orin Jetson Nano/AGX device as an Agent Machine](#loading-an-ai-model-to-an-nvidia-orin-jetson-nano/agx-device-as-an-agent-machine)
     - [Declaring a new Agent Collection that includes the Nvidia machine on the Coordinator Machine](#declaring-a-new-agent-collection-that-includes-the-nvidia-machine-on-the-coordinator-machine)
     - [Connecting a second instance of the User Console web server to the Coordinator Machine](#connecting-a-second-instance-of-the-user-console-web-server-to-the-coordinator-machine)
   - [Setting Up and Running a Multi-Agent Collection](#setting-up-and-running-a-multi-agent-collection)
@@ -346,7 +346,7 @@ The figure below shows the demonstration scenario you'll be able to implement.
 
 To learn how to add an Nvidia Orin Jetson Nano/AGX device as an Agent Machine on the mimik Service Mesh, go [here](./02-nvidia-architecture/nvidia-agent-machine/).
 
-### Loading an AI model to the Agent Machine
+### Loading an AI model to an Nvidia Orin Jetson Nano/AGX device as an Agent Machine
 
 To learn how to load an AI model to the Agent Machine, go [here](./02-nvidia-architecture/nvidia-agent-machine/readme.md#Step-9).
 
