@@ -76,7 +76,8 @@ The main benefits are:
 * Improved accuracy through multi-agent processing
 * Cost-effective utilization of computing resources
 * Supports various computing devices, from standard computers to mobile devices and AI-optimized hardware like NVIDIA GPUs.
-   
+
+# Core concepts and Architecture #
 # What You Need to Know Before You Start
 
 In order to get full benefit from reading this documentation you need to have the following before you start:
