@@ -26,6 +26,7 @@
 - [Implementing the Demonstration Scenarios](#implementing-the-demonstration-scenarios)
   - [Setting up and running a Single Agent Collection scenario](#setting-up-and-running-a-single-agent-collection-scenario)
     - [Getting a single Agent Machine up and running](#getting-a-single-agent-machine-up-and-running)
+    - [Loading an AI model to the Agent Machine](#loading-an-ai-model-to-the-agent-machine)
     - [Getting the Coordinator Machine up and running](#getting-the-coordinator-machine-up-and-running)
     - [Connecting the User Console to the Coordinator Machine](#connecting-the-user-console-to-the-coordinator-machine)
   - [Setting Up and Running an Agent Collection that includes an Nvidia Agent Machine](#setting-up-and-running-an-agent-collection-that-includes-an-nvidia-agent-machine)
