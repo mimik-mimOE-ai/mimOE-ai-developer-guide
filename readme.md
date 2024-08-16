@@ -32,21 +32,23 @@
     - [Declaring a new Agent Collection on  the Coordinator Machine](#declaring-a-new-agent-collection-on--the-coordinator-machine)
     - [Connecting a new instance of the User Console web server to the Coordinator Machine](#connecting-a-new-instance-of-the-user-console-web-server-to-the-coordinator-machine)
 
-# Welcome to mimOE.ai #
+# Introduction to mimOE.ai
+
+## Welcome to mimOE.ai
 
 Welcome to mimOE.ai, a cutting-edge product designed to revolutionize AI-powered application development. mimOE.ai is built to make developing AI applications easier, more secure, and more cost-effective. Whether you're a seasoned developer or just starting your journey in AI application development, mimOE.ai provides the tools and infrastructure you need to create powerful, distributed AI solutions.
 
 mimOE.ai empowers developers to create sophisticated AI applications that leverage distributed computing resources, local AI models, and advanced coordination capabilities. Whether you're building a simple chatbot or a complex multi-agent AI system, mimOE.ai provides the tools and infrastructure to bring your ideas to life.
 
-This documentation describes mimOE.ai and how it works. It provides both explanations and a set of hands-on demonstration projects that show developers how to work with the technology. The demonstration projects are progressive in that each builds upon activities implemented in a previous demonstration project.
+This documentation describes mimOE.ai and how it works. It provides explanations and a set of hands-on demonstration projects showing developers how to work with the technology. The demonstration projects are progressive in that each builds upon activities implemented in a previous demonstration project.
 
-The demonstration projects illustrate three scenarios of progressive complexity. The first scenario you'll run is a single-agent scenario under Agent Collection. In the second scenario, you'll add an Nvidia Orin device to the mimik Service Mesh as an Agent Machine. You'll then create a new Agent Collection that includes the Agent Machine you made in the first scenario and the Nvidia Agent Machine. You’ll also make a distinctly named Agent Collection on the Coordinator Machine for this scenario. In the third scenario, you'll add two more Agent Machines to the mimik Service Mesh and run all under another distinctly named Agent Collection. Through these scenarios, you will learn how to fetch and upload your AI model to the agents/computing nodes (steps will be highlighted in mModelStore µservices)
+The demonstration projects illustrate three scenarios of progressive complexity. The first scenario you'll run is a single-agent scenario under Agent Collection. In the second scenario, you'll add an Nvidia Orin device to the mimik Service Mesh as an Agent Machine. You'll then create a new Agent Collection that includes the Agent Machine you made in the first scenario and the Nvidia Agent Machine. For this scenario, you’ll also make a distinctly named Agent Collection on the Coordinator Machine. In the third scenario, you'll add two more Agent Machines to the mimik Service Mesh and run all under another distinctly named Agent Collection. Through these scenarios, you will learn how to fetch and upload your AI model to the agents/computing nodes (steps will be highlighted in mModelStore µservices)
 
 Before discussing each scenario, a developer must understand the essential concepts and components of mimOE.ai. Once a developer understands these essentials, we'll provide the instructions for a developer to get direct hands-on experience with the scenarios via demonstration projects.
 
 Let's start by answering the question, what is mimOE.ai?
 
-# What is mimOE.ai?#
+## What is mimOE.ai?
 
 mimOE.ai is a product intended to make developing AI-powered applications more accessible, secure, and cost-effective.
 
@@ -60,7 +62,7 @@ The figure below describes the various deployment units.
 
 From a developer's point of view, the vital thing to understand about mimOE.ai is that the technology is a collection of deployment units. edgeEngine is the deployment unit that needs to be installed on any machine that implements mimOE.ai. The other deployment units are the various AI-focused microservices published by mimik, `mILM`, `mAI`, `mKB`, and `mModelStore`. You'll learn how to use these microservices in sections to come.
 
-# Key features and benefits of mimOE.ai #
+## Key features and benefits of mimOE.ai
 
 Its key features are:
 
@@ -77,91 +79,13 @@ The main benefits are:
 * Cost-effective utilization of computing resources
 * Supports various computing devices, from standard computers to mobile devices and AI-optimized hardware like NVIDIA GPUs.
 
-# Core concepts and Architecture #
-# What You Need to Know Before You Start
+# Core concepts and Architecture
 
-In order to get full benefit from reading this documentation you need to have the following before you start:
-* A mimik developer's account, which you create on the [Getting Started page of the mimik Developer Portal](https://console.mimik.com/create_account). (See the following figure.)
-![Create Account](./images/create-account-01.png)
-* A general understanding of mimik technology because mimOE.ai is an extension of it. The following links refer to entries in the [mimik Developer Documentation](https://devdocs.mimik.com/) that describe the basics of mimik.
-  * [Introduction to edgeEngine](https://devdocs.mimik.com/introduction) : Introduces a developer to the 3 essential components of edgeEngine technology: the edgeEngine Runtime, the hybrid edgeCloud, and the edgeEngine Service Mesh.
-  * [Key Concepts](https://devdocs.mimik.com/key-concepts) : Describes the key concepts a developer needs to understand in order to work effectively with edgeEngine.
-* In addition to understanding the basics of mimik technology, a developer needs to have a working understanding of the nature of large language models (LLM) and how they respond to prompts and queries submitted by end-users. LLMs are important part of mimOE.ai
+## Understanding the Basic Architecture
 
+Under mimOE.ai, two types of machines are running on a mimik Service Mesh. One machine is a Coordinator Machine. The  other machine is an Agent Machine. As mentioned above, mimOE.ai has a feature that will process prompt results from various AI prompts and synthesize those prompt results into a "best possible response". The Coordinator Machine does the work of gathering the prompt results into a "best possible response". The Agent Machine(s) executes a particular prompt against an LLM or vector database that gets processed upstream by a Coordinator Machine.
 
-
-# What You Need to Have On Hand
-
-When it comes time to do the hands-on demonstration projects you'll need to have the following:
-
-* A development machine running a copy of Visual Studio Code
-* The [Rest Client extension](https://marketplace.visualstudio.com/items?itemName=MadsKristensen.RestClient) installed in Visual Studio code
-* Working familiarity using the Rest Client. (Read [this tutorial](https://medium.com/lseg-developer-community/how-to-test-rest-api-with-visual-studio-code-rest-client-extensions-9f2e061d0299) to get a basic understanding of how to use the Rest Client.)
-* A set of computers running the Ubuntu 22.04 that have port 8083 exposed. These computers can be distinct physical AMD computers, and ARM computers such as Raspberry Pi or AMD virtual machines (VM) running Ubuntu 22.04. Also, these computers need to be running the latest version of edgeEngine for mimOE.ai. This is version of edgeEngine is formally called `mimOE-SE-Linux v3.12.0` and can downloaded from the [mimOE-SE-Linux v3.12.0 Release Page on GitHub](https://github.com/mimik-mimOE/mimOE-SE-Linux/).
-
-# What You'll be Doing
-
-
-As mentioned previously, for purposes of demonstration and education you will be creating 3 scenarios of increasing complexity in a progressive manner. Each scenario builds on concepts and work done in the previous scenario.
-
-To review, these scenarios are:
-
-* **Scenario 1:** A single [Agent Machine](#understanding-agent-machines) and a [Coordinator Machine](#understanding-the-coordinator-machine).
-* **Scenario 2:** A two Agent Machine scenario that includes a Nvidia device that runs under the Coordinator created in Scenario 1.
-* **Scenario 3:** A multiple Agent Machine scenario that runs under the Coordinator Machine created in Scenario 1.
-
-(The details about the nature and use of an Agent Machine and a Coordinator Machine are described in the section [ Understanding the Basic Architecture](#understanding-the-basic-architecture) that follows later on in this document.)
-  
-
-These demonstration scenarios involve running a number of computers on the mimik Service Mesh. These computers will need to be running the latest version of edgeEngine for mimOE.ai.
-
-For Scenario 1 we recommend using an AMD computer for the Coordinator Machine and either an ARM or AMD computer for the single Agent Machine.
-
-In Scenario 2, we demonstrate how to incorporate a Nvidia Orin Jetson Nano device into the mimik Service Mesh. Thus, you will need to have one available. In Scenario 2, you will use the existing Coordinator Machine you created in Scenario 1.
-
-In Scenario 3, you will add 2 more Agent Machines to the mimik Service Mesh and configure mimOE.ai to support the additional computers, which can be AMD or ARM computers.
-
-
-The table below describes the machine and releases of mimOE-SE-Linux v3.12.0 that you will need to have available for each scenario.
-
-|Scenario|Machine|Type|Version of mimOE-SE-Linux|
-|----|----|----|----|
-|Scenario 1|Coordinator Machine|ARM or AMD|Click to download: [mimOE-SE-linux-developer-AMD64-v3.12.0.tar](https://github.com/mimik-mimOE/mimOE-SE-Linux/releases/download/v3.12.0/mimOE-SE-linux-developer-AMD64-v3.12.0.tar) or [mimOE-SE-linux-developer-ARM64-v3.12.0.tar](https://github.com/mimik-mimOE/mimOE-SE-Linux/releases/download/v3.12.0/mimOE-SE-linux-developer-ARM64-v3.12.0.tar)|
-| |Agent Machine|ARM or AMD|mimOE-SE-linux-developer-AMD64-v3.12.0.tar or mimOE-SE-linux-developer-ARM64-v3.12.0.tar|
-|Scenario 2|Existing Coordinator Machine|Installed in Scenario 1| |
-| |Agent Machine|Installed in previous in Scenario 1| |
-| |Agent Machine|Nvidia Orin Jetson Nano device| Click to download: [mimOE-SE-linux-developer-ARM64-CUDA-v3.12.0.tar](https://github.com/mimik-mimOE/mimOE-SE-Linux/releases/download/v3.12.0/mimOE-SE-linux-developer-ARM64-CUDA-v3.12.0.tar)|
-|Scenario 3|Existing Coordinator Machine|Installed in Scenario 1| |
-| |Agent Machine|Installed in Scenario 1| |
-| |Agent Machine|Nvidia Orin Jetson Nano device installed in Scenario 2| |
-| |Agent Machine|ARM or AMD|mimOE-SE-linux-developer-AMD64-v3.12.0.tar or mimOE-SE-linux-developer-ARM64-v3.12.0.tar|
-| |Agent Machine|ARM or AMD|mimOE-SE-linux-developer-AMD64-v3.12.0.tar or mimOE-SE-linux-developer-ARM64-v3.12.0.tar|
-
-The details of each release as well as Quickstart instructions for installation are located at [the mimOE-SE-Linux-v3.12.0 Release page](https://github.com/mimik-mimOE/mimOE-SE-Linux/releases) on GitHub.
-
-
-# The Nature and Use of mimOE.ai
-
-mimOE utilizes mimik's edgeEngine runtime and mimik Service Mesh to provide enhanced artificial intelligence processing capabilities in application development. Using mimOE.ai a developer can interact with LLMs that run directly on any number of computing devices. Such devices can be a standard computer on a developer machine, a server in a data center, a mobile device such as a cell phone or tablet, or hardware that's optimized for AI processing such as those computing devices manufactured by Nvidia.
-
-mimOE publishes a number of microservices that execute under the edgeEngine runtime on a given computing device. These microservices are:
-
-|Microservice|Description||
-|----|----|----|
-|mILM|A microservice that exposes a discoverable API that interacts with an LLM. The implementation can either be done by exposing an API of an LLM that runs in the same process or acting as a proxy for an LLM that runs in a different process and exposes a non-discoverable API.|Go to release page [HERE](https://github.com/edgeMicroservice/mILM)|
-|mAI|An implementation of an AI chain as a microservice. mAI acts as a coordination agent in a collection of AI agents that perform specific tasks. mAI has no hardware constraints and can run on machines that also run other agents. There can be more than one mAI per collection of agents; mAI defines a specific goal when dealing with multiple agents. When the AI chain is well-defined, it is possible to have a configuration-based microservice. However, when dealing with complex interactions, the mAI will have a specific code to implement the AI chain.|Go to release page [HERE](https://github.com/edgeMicroservice/mAI)|
-|mKB|A microservice that uses a vector database to implement an augmented generation system. Documents are chunked and indexed by creating vector representations (embeddings) of the document. The result of the indexation is stored in a vector database. mKB is used in a collection of agents as an agent that has specific knowledge about a subject|Go to release page [HERE](https://github.com/edgeMicroservice/mKB)|
-|mModelStore|A microservice that stores AI models and exposes discoverable API to allow other components (mILM, for example) to fetch the model for its own consumption. The component that fetches the model can be on the same machine or a different machine.|Go to release page [HERE](https://github.com/edgeMicroservice/mModelStore)|
-
-In short, the enhancements provided by mimOE.ai make working with AI a faster, more secure, more accurate undertaking.
-
-Having covered the key  concepts that are the foundation of mimOE.ai, let's take a look at the specifics of mimOE.ai architecture.
-
-# Understanding the Basic Architecture
-
-Under mimOE.ai there are two types of machines running on a mimik Service Mesh. One machine is a Coordinator Machine. The  other machine is an Agent Machine. As mentioned above, mimOE.ai has a feature that will process prompt results from a variety of AI prompts and synthesize those prompt results into a "best possible response". The Coordinator Machine does the work of gathering the prompt results into a "best possible response". The Agent Machine(s) does the work of executing a particular prompt against an LLM or vector database that gets processed upstream by a Coordinator Machine.
-
-The figure below shows an instance of the mimik Service Mesh that has four Agent Machines and a Coordinator Machine.
+The figure below shows an instance of the mimik Service Mesh with four Agent Machines and a Coordinator Machine.
 
 ![Basic Architecture](./images/basic-architecture.png)
 
@@ -169,22 +93,38 @@ A computing device is deemed an Agent machine when it runs one of the mimOE.ai m
 
 A computing device is deemed a Coordinator Machine when it runs the `mAI` microservice.
 
-**NOTE:** It is possible for a computing device to be both an Agent Machine and a Coordinator Machine. But this capability is an advanced topic that is beyond the scope of this introductory documentation.
+**NOTE:** It is possible for a computing device to be both an Agent Machine and a Coordinator Machine. However, this capability is an advanced topic beyond the scope of this introductory documentation.
 
-The sections that follow describe the architectural details of an Agent Machine and a Coordinator Machine.
+## The Nature and Use of mimOE.ai
 
+mimOE utilizes mimik's edgeEngine runtime and mimik Service Mesh to enhance artificial intelligence processing capabilities in application development. Using mimOE.ai a developer can interact with LLMs that run directly on any number of computing devices. Such devices can be a standard computer on a developer machine, a server in a data center, a mobile device such as a cell phone or tablet, or hardware optimized for AI processing such as those computing devices manufactured by Nvidia.
+
+## AI focused Microservices (mILM, mAI, mKB, mModelStore)
+
+mimOE publishes several microservices that execute under the edgeEngine runtime on a given computing device. These microservices are:
+
+|Microservice|Description||
+|----|----|----|
+|mILM|A microservice that exposes a discoverable API interacting with an LLM. The implementation can either be done by exposing an API of an LLM that runs in the same process or acting as a proxy for an LLM that runs in a different process and exposes a non-discoverable API.|Go to release page [HERE](https://github.com/edgeMicroservice/mILM)|
+|mAI|An implementation of an AI chain as a microservice. mAI acts as a coordination agent in a collection of AI agents that perform specific tasks. mAI has no hardware constraints and can run on machines that also run other agents. There can be more than one mAI per collection of agents; mAI defines a specific goal when dealing with multiple agents. When the AI chain is well-defined, it is possible to have a configuration-based microservice. However, when dealing with complex interactions, the mAI will have a specific code to implement the AI chain.|Go to the release page [HERE](https://github.com/edgeMicroservice/mAI)|
+|mKB|A microservice that uses a vector database to implement an augmented generation system. Documents are chunked and indexed by creating vector representations (embeddings) of the document. The result of the indexation is stored in a vector database. mKB is used in a collection of agents as an agent that has specific knowledge about a subject|Go to the release page [HERE](https://github.com/edgeMicroservice/mKB)|
+|mModelStore|A microservice that stores AI models and exposes discoverable API to allow other components (mILM, for example) to fetch the model for its own consumption. The component that fetches the model can be on the same machine or a different machine.|Go to the release page [HERE](https://github.com/edgeMicroservice/mModelStore)|
+
+In short, mimOE.ai's enhancements make working with AI faster, more secure, and more accurate.
+
+# Key Components
 
 ## Understanding Agent Machines
 
-As mentioned previously, an Agent Machine does the work of executing a prompt against a particular LLM or vector database. The figure below illustrates the logic that describes how an Agent Machine works. An explanation of the illustration follows.
+As mentioned, an Agent Machine executes a prompt against a particular LLM or vector database. The figure below illustrates the logic that describes how an Agent Machine works. An explanation of the illustration follows.
 
 ![Logical Architecture](./images/logical-agent-architecture.png)
 
 The starting point for interaction with an Agent Machine is a prompt submitted to the edgeEngine runtime web server at port 8083. edgeEngine passes the prompt onto the mimOE.ai microservice that interacts with a particular AI model. If the Agent Machine is running the `mILM` microservices will access LLM stored locally on the machine. If the Agent Machine is running the `mKB` microservice it will interact with a vector database. If the Agent Machine is running the `mModelStore` microservice it will interact with an AI model running elsewhere.
 
-Once the AI model processes the prompt, the result is returned to the mimOE.ai microservice and then back to the caller that submitted the prompt.
+Once the AI model processes the prompt, the result is returned to the mimOE.ai microservice and then returned to the caller who submitted the prompt.
 
-The details that go with working with an Agent Machine are covered in [a section to come](#getting-a-single-agent-machine-up-and-running).
+Working with an Agent Machine is covered in [a section to come](#getting-a-single-agent-machine-up-and-running).
 
 ## Understanding the Coordinator Machine
 
@@ -194,13 +134,13 @@ As mentioned above, the role of the Coordinator Machine is to synthesize prompt 
 
 The Coordinator Machine is intended to support multi-agent processing.
 
-The way that multi-agent processing works is that a user submits, via the edgeEngine runtime, a prompt to the Coordinator Machine according to a specific Agent Collection. (The details about an Agent Collection are discussed in the section to come.) The Coordinator Machine forwards the prompt to the Agent Machines in the Agent Collection. Each Agent Machine in the Agent Collection processes the prompt and returns its response back to the Coordinator Machine. The Coordinator Machine then synthesizes the prompt responses from the Agent Machines into the "best possible answer."
+The way that multi-agent processing works is that a user submits, via the edgeEngine runtime, a prompt to the Coordinator Machine according to a specific Agent Collection. (The details about an Agent Collection are discussed in the coming section.) The Coordinator Machine forwards the prompt to the Agent Machines in the Agent Collection. Each Agent Machine in the Agent Collection processes the prompt and returns its response to the Coordinator Machine. The Coordinator Machine then synthesizes the prompt responses from the Agent Machines into the "best possible answer."
 
-The details that go with working with a Coordinator Machine are covered in [a section to come](#getting-the-coordinator-machine-up-and-running).
+Working with a Coordinator Machine is covered in [a section to come](#getting-the-coordinator-machine-up-and-running).
 
 ## Understanding Agent Collections
 
-An Agent Collection is a logical grouping of Agent Machines grouped together according to the model(s) running on the given machine. An Agent Collection is a named organizational unit. Thus, an Agent Collection is identified on a Coordinator Machine according to its name. The figure below describes various Agent Collections in force in the demonstration scenarios.
+An Agent Collection is a logical grouping of Agent Machines according to the model(s) running on the given machine. It is a named organizational unit. Thus, an Agent Collection is identified on a Coordinator Machine according to its name. The figure below describes various Agent Collections in force in the demonstration scenarios.
 
 ![Agent Collections](./images/agent-collections.png)
 
@@ -208,18 +148,25 @@ A mimOE.ai Coordinator Machine is designed to support multiple Agent Collections
 
 Also, as you'll learn when you start working with the various demonstration scenarios, you'll bind an instance of the User Console to a given Agent Collection on a Coordinator Machine according to the Coordinator Machine's IP address and the name of the Agent Collection of interest installed on the Coordinator Machine.
 
-# Implementing the Demonstration Scenarios
+# Prerequisites
 
-The first scenario you'll run is a single-agent scenario under a distinctly named Agent Collection.
+## What You Need to Know Before You Start
 
-In the second scenario, you'll add an Nvidia Orin device to the mimik Service Mesh as an Agent Machine. You'll then create a new Agent Collection that includes both the Agent Machine you created in the first scenario and the Nvidia Agent Machine. You’ll also create a distinctly named Agent Collection for this scenario on the Coordinator Machine.
+To get full benefit from reading this documentation, you need to have the following before you start:
 
-In the third scenario, you'll add two more Agent Machines to the mimik Service Mesh and run all under yet another distinctly named Agent Collection.
+* A mimik developer's account, which you create on the [Getting Started page of the mimik Developer Portal](https://console.mimik.com/create_account). (See the following figure.)
+![Create Account](./images/create-account-01.png)
+* A general understanding of mimik technology because mimOE.ai is an extension. The following links refer to entries in the [mimik Developer Documentation](https://devdocs.mimik.com/) that describe the basics of mimik.
+  * [Introduction to edgeEngine](https://devdocs.mimik.com/introduction): Introduces a developer to the 3 essential components of edgeEngine technology: the edgeEngine Runtime, the hybrid edgeCloud, and the edgeEngine Service Mesh.
+  * [Key Concepts](https://devdocs.mimik.com/key-concepts): Describes the key concepts a developer needs to understand to work effectively with edgeEngine.
 
+In addition to understanding the basics of mimik technology, a developer needs to understand the nature of large language models (LLM) and how they respond to prompts and queries submitted by end-users. LLMs are important part of mimOE.ai
+
+# Getting Started
 
 ## Getting Essential Configuration Information
 
-In order to get the various devices within the mimik Service Mesh integrated into mimOE.ai at run time, a developer needs to have information that is particular to the developer's account on the [mimik Developer Portal](https://console.mimik.com/) Also, the developer will need to discover information that is particular to the machine running on the mimik Service Mesh and intended to be part of the a demonstration scenario. The required information is:
+To get the various devices within the mimik Service Mesh integrated into mimOE.ai at run time, a developer must have information about the developer's account on the [mimik Developer Portal](https://console.mimik.com/). Also, the developer will need to discover information about the machine running on the mimik Service Mesh, which is intended to be part of the demonstration scenario. The required information is:
 
 * `clientId token`
 * `developerId token`
@@ -235,7 +182,7 @@ The figure below describes the steps necessary to get the `clientId token` and `
 
 ### Getting a nodeId
 
-A `nodeId` is an alphanumeric string that is associated with a particular machine running on the mimik Service Mesh. The `nodeId` is assigned at runtime by the edgeEngine instance running on the given machine. A developer discovers the `nodeId` of the given machine by running a cURL command against the IP address of the machine in question.
+A `nodeId` is an alphanumeric string associated with a particular machine running on the mimik Service Mesh. The `nodeId` is assigned at runtime by the edgeEngine instance running on the given machine. A developer discovers the `nodeId` of the given machine by running a cURL command against the IP address of the machine in question.
 
 ```
 curl --request POST \
@@ -286,9 +233,67 @@ The important thing to understand about `setup.http` files is that they are inte
 
 Developers will generate and configure `.env` files when performing the hands-on demonstration scenarios described in this documentation. Typically, `.env` files will be created automatically against a template file using a bash script.
 
+# Scenario implementation
+
+## What You Need to Have On Hand
+
+When it comes time to do the hands-on demonstration projects, you'll need to have the following:
+
+* A development machine running a copy of Visual Studio Code
+* The [Rest Client extension](https://marketplace.visualstudio.com/items?itemName=MadsKristensen.RestClient) installed in Visual Studio code
+* Working familiarity using the Rest Client. (Read [this tutorial](https://medium.com/lseg-developer-community/how-to-test-rest-api-with-visual-studio-code-rest-client-extensions-9f2e061d0299) to get a basic understanding of how to use the Rest Client.)
+* A set of computers running the Ubuntu 22.04 with port 8083 exposed. These computers can be distinct physical AMD and ARM, such as Raspberry Pi or AMD virtual machines (VM) running Ubuntu 22.04. Also, these computers must be running the latest version of edgeEngine for mimOE.ai. This is a version of edgeEngine formally called `mimOE-SE-Linux v3.12.0` and can be downloaded from the [mimOE-SE-Linux v3.12.0 Release Page on GitHub](https://github.com/mimik-mimOE/mimOE-SE-Linux/).
+
+## Hardware and software recommendations
+
+As mentioned previously, for purposes of demonstration and education, you will create 3 scenarios of increasing complexity in a progressive manner. Each scenario builds on concepts and work done in the previous scenario.
+
+To review, these scenarios are:
+
+* **Scenario 1:** A single [Agent Machine](#understanding-agent-machines) and a [Coordinator Machine](#understanding-the-coordinator-machine).
+* **Scenario 2:** This is a Two-Agent Machine scenario that includes an Nvidia device that runs under the Coordinator created in Scenario 1.
+* **Scenario 3:** A multiple Agent Machine scenario that runs under the Coordinator Machine created in Scenario 1.
+
+(The details about the nature and use of an Agent Machine and a Coordinator Machine are described in the section [ Understanding the Basic Architecture](#understanding-the-basic-architecture) that follows later on in this document.)
+  
+
+These demonstration scenarios involve running several computers on the mimik Service Mesh. These computers will need to run the latest edgeEngine version for mimOE.ai.
+
+For Scenario 1, we recommend using an AMD computer for the Coordinator Machine and an ARM or AMD computer for the single Agent Machine.
+
+In Scenario 2, we demonstrate how to incorporate a Nvidia Orin Jetson Nano device into the mimik Service Mesh. Thus, you will need to have one available. In Scenario 2, you will use the existing Coordinator Machine you created in Scenario 1.
+
+In Scenario 3, you will add two more Agent Machines to the mimik Service Mesh and configure mimOE.ai to support the additional computers, AMD or ARM computers.
+
+
+The table below describes the machine and releases of mimOE-SE-Linux v3.12.0 that you will need to have available for each scenario.
+
+|Scenario|Machine|Type|Version of mimOE-SE-Linux|
+|----|----|----|----|
+|Scenario 1|Coordinator Machine|ARM or AMD|Click to download: [mimOE-SE-linux-developer-AMD64-v3.12.0.tar](https://github.com/mimik-mimOE/mimOE-SE-Linux/releases/download/v3.12.0/mimOE-SE-linux-developer-AMD64-v3.12.0.tar) or [mimOE-SE-linux-developer-ARM64-v3.12.0.tar](https://github.com/mimik-mimOE/mimOE-SE-Linux/releases/download/v3.12.0/mimOE-SE-linux-developer-ARM64-v3.12.0.tar)|
+| |Agent Machine|ARM or AMD|mimOE-SE-linux-developer-AMD64-v3.12.0.tar or mimOE-SE-linux-developer-ARM64-v3.12.0.tar|
+|Scenario 2|Existing Coordinator Machine|Installed in Scenario 1| |
+| |Agent Machine|Installed in previous in Scenario 1| |
+| |Agent Machine|Nvidia Orin Jetson Nano device| Click to download: [mimOE-SE-linux-developer-ARM64-CUDA-v3.12.0.tar](https://github.com/mimik-mimOE/mimOE-SE-Linux/releases/download/v3.12.0/mimOE-SE-linux-developer-ARM64-CUDA-v3.12.0.tar)|
+|Scenario 3|Existing Coordinator Machine|Installed in Scenario 1| |
+| |Agent Machine|Installed in Scenario 1| |
+| |Agent Machine|Nvidia Orin Jetson Nano device installed in Scenario 2| |
+| |Agent Machine|ARM or AMD|mimOE-SE-linux-developer-AMD64-v3.12.0.tar or mimOE-SE-linux-developer-ARM64-v3.12.0.tar|
+| |Agent Machine|ARM or AMD|mimOE-SE-linux-developer-AMD64-v3.12.0.tar or mimOE-SE-linux-developer-ARM64-v3.12.0.tar|
+
+The details of each release, as well as Quickstart instructions for installation, are located at [the mimOE-SE-Linux-v3.12.0 Release page](https://github.com/mimik-mimOE/mimOE-SE-Linux/releases) on GitHub.
+
+# Implementing the Demonstration Scenarios
+
+The first scenario you'll run is a single-agent scenario under Agent Collection.
+
+In the second scenario, you'll add an Nvidia Orin device to the mimik Service Mesh as an Agent Machine. You'll then create a new Agent Collection that includes the Agent Machine you created in the first scenario and the Nvidia Agent Machine. You’ll also make a distinctly named Agent Collection on the Coordinator Machine for this scenario.
+
+In the third scenario, you'll add two more Agent Machines to the mimik Service Mesh and run all under another distinctly named Agent Collection.
+
 ## Setting up and running a Single Agent Collection scenario
 
-The Single Agent scenario is one in which there is the Agent Collection associated with the Coordinator Machine has only a single Agent Machine. The Coordinator Machine works with that machine in the Agent Collection, forwarding prompts that will then be synthesized by the Coordinator Machine. The User Console sends HTTP requests to the Coordinator Machine and receives prompt responses emitted by the Agent Machine. These responses are then synthesized by the Coordinator Machine.
+The Single Agent scenario is one in which the Agent Collection associated with the Coordinator Machine has only a single Agent Machine. The Coordinator Machine works with that machine in the Agent Collection; forwarding prompts the Coordinator Machine to synthesize. The User Console sends HTTP requests to the Coordinator Machine and receives prompt responses from the Agent Machine. The Coordinator Machine then synthesizes these responses.
 
 ![Single Agent Scenario](./images/single-agent-scenario.png)
 
@@ -302,11 +307,15 @@ Getting a single Agent Collection up and running is a three-part undertaking as 
 
 The instructions for getting a single Agent Machine up and running are [here](01-single-agent-architecture/agent-machine/)
 
+### Loading an AI model to the Agent Machine
+
+The instructions for loading an AI model to the Agen Machine are 
+
 ### Getting the Coordinator Machine up and running
 
 The instructions for getting the Coordinator Machine up and running are [here](01-single-agent-architecture/coordinator-machine/)
 
-### Connecting the User Console to the Coordinator Machine
+### Connecting the User Console to the Coordinator's Machine
 
 The instructions for connecting the User Console to the Coordinator Machine are described [here](01-single-agent-architecture/user-console/).
 
