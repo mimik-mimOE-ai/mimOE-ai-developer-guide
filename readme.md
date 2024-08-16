@@ -309,7 +309,7 @@ The instructions for getting a single Agent Machine up and running are [here](01
 
 ### Loading an AI model to the Agent Machine
 
-The instructions for loading an AI model to the Agent Machine are in step 9 of [here](01-single-agent-architecture/agent-machine/readme.md#Step-9)
+The instructions for loading an AI model to the Agent Machine are [here](01-single-agent-architecture/agent-machine/readme.md#Step-9)
 
 ### Getting the Coordinator Machine up and running
 
@@ -341,7 +341,7 @@ To learn how to add an Nvidia Orin Jetson Nano/AGX device as an Agent Machine on
 
 ### Loading an AI model to the Agent Machine
 
-
+To learn how to load an AI model to the Agent Machine, go [here](./02-nvidia-architecture/nvidia-agent-machine/readme.md#).
 
 ### Declaring a new Agent Collection that includes the Nvidia machine on the Coordinator Machine
 
