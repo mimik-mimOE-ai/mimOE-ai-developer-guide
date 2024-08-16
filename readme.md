@@ -1,11 +1,11 @@
 # Table of Contents
 
 - [Table of Contents](#table-of-contents)
-- [Introduction to mimiOE.ai](#introduction-to-mimiOE.ai)
-  - Welcome to mimiOE.ai
+- [Introduction to mimiOE.ai](#introduction-to-mimOE.ai)
+  - [Welcome to mimiOE.ai](#welcome-to-mimOE.ai)
   - [What is mimOE.ai?](#what-is-mimoeai)
-  - Key feature and benefits
-- Core Concepts and Architecture
+  - [Key features and benefits](#key-features-and-benefits)
+- [Core Concepts and Architecture](#core-concepts-and-architecture)
 - [What You Need to Know Before You Start](#what-you-need-to-know-before-you-start)
 - [What You Need to Have On Hand](#what-you-need-to-have-on-hand)
 - [What You'll be Doing](#what-youll-be-doing)
