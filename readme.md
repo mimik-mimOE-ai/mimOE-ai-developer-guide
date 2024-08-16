@@ -273,7 +273,7 @@ In Scenario 3, you will add two more Agent Machines to the mimik Service Mesh an
 
 The table below describes the machine and releases of mimOE-SE-Linux v3.12.0 that you will need to have available for each scenario.
 
-|Scenario|Machine|Type|Version of mimOE-SE-Linux|
+|Scenario  |Machine|Type|Version of mimOE-SE-Linux|
 |---------|----|----|----|
 |Scenario 1|Coordinator Machine|ARM or AMD|Click to download: [mimOE-SE-linux-developer-AMD64-v3.12.0.tar](https://github.com/mimik-mimOE/mimOE-SE-Linux/releases/download/v3.12.0/mimOE-SE-linux-developer-AMD64-v3.12.0.tar) or [mimOE-SE-linux-developer-ARM64-v3.12.0.tar](https://github.com/mimik-mimOE/mimOE-SE-Linux/releases/download/v3.12.0/mimOE-SE-linux-developer-ARM64-v3.12.0.tar)|
 | |Agent Machine|ARM or AMD|mimOE-SE-linux-developer-AMD64-v3.12.0.tar or mimOE-SE-linux-developer-ARM64-v3.12.0.tar|
