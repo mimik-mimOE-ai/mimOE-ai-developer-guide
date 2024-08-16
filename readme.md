@@ -309,7 +309,7 @@ The instructions for getting a single Agent Machine up and running are [here](01
 
 ### Loading an AI model to the Agent Machine
 
-The instructions for loading an AI model to the Agent Machine are in step 9 of [here](01-single-agent-architecture/agent-machine/#Step9)
+The instructions for loading an AI model to the Agent Machine are in step 9 of [here](01-single-agent-architecture/agent-machine/readme.md#Step 9)
 
 ### Getting the Coordinator Machine up and running
 
