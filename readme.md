@@ -23,22 +23,22 @@
 - [Scenario Implementation](#scenario-implementation)
     - [What You Need to Have On Hand](#what-you-need-to-have-on-hand)
     - [Hardware and Software Recommendations](#hardware-and-software-recommendations)
-- [Implementing the Demonstration Scenarios](#implementing-the-demonstration-scenarios)
-  - [Setting up and running a Single Agent Collection scenario](#setting-up-and-running-a-single-agent-collection-scenario)
-    - [Getting a single Agent Machine up and running](#getting-a-single-agent-machine-up-and-running)
-    - [Loading an AI model to the Agent Machine](#loading-an-ai-model-to-the-agent-machine)
-    - [Getting the Coordinator Machine up and running](#getting-the-coordinator-machine-up-and-running)
-    - [Connecting the User Console to the Coordinator Machine](#connecting-the-user-console-to-the-coordinator-machine)
-  - [Setting Up and Running an Agent Collection that includes an Nvidia Agent Machine](#setting-up-and-running-an-agent-collection-that-includes-an-nvidia-agent-machine)
-    - [Adding an Nvidia Orin Jetson Nano/AGX device as an Agent Machine](#adding-an-nvidia-orin-jetson-nanoagx-device-as-an-agent-machine)
-    - [Loading an AI model to the Nvidia device as an Agent Machine](#loading-an-ai-model-to-the-nvidia-device-as-an-agent-machine)
-    - [Declaring a new Agent Collection that includes the Nvidia machine on the Coordinator Machine](#declaring-a-new-agent-collection-that-includes-the-nvidia-machine-on-the-coordinator-machine)
-    - [Connecting a second instance of the User Console web server to the Coordinator Machine](#connecting-a-second-instance-of-the-user-console-web-server-to-the-coordinator-machine)
-  - [Setting Up and Running a Multi-Agent Collection](#setting-up-and-running-a-multi-agent-collection)
-    - [Adding Multiple Agent Machines to the mimik Service Mesh](#adding-multiple-agent-machines-to-the-mimik-service-mesh)
-    - [Loading AI Models to the Agent Machines](#loading-ai-models-to-the-agent-machines)
-    - [Declaring a new Agent Collection on  the Coordinator Machine](#declaring-a-new-agent-collection-on--the-coordinator-machine)
-    - [Connecting a new instance of the User Console web server to the Coordinator Machine](#connecting-a-new-instance-of-the-user-console-web-server-to-the-coordinator-machine)
+    - [Implementing the Demonstration Scenarios](#implementing-the-demonstration-scenarios)
+      - [Scenario 1: Setting up and running a Single Agent Collection scenario](#scenario-1-setting-up-and-running-a-single-agent-collection-scenario)
+        - [Getting a single Agent Machine up and running](#getting-a-single-agent-machine-up-and-running)
+        - [Loading an AI model to the Agent Machine](#loading-an-ai-model-to-the-agent-machine)
+        - [Getting the Coordinator Machine up and running](#getting-the-coordinator-machine-up-and-running)
+        - [Connecting the User Console to the Coordinator Machine](#connecting-the-user-console-to-the-coordinator-machine)
+      - [Scenario 2: Setting Up and Running an Agent Collection that includes an Nvidia Agent Machine](#scenario-2-setting-up-and-running-an-agent-collection-that-includes-an-nvidia-agent-machine)
+        - [Adding an Nvidia Orin Jetson Nano/AGX device as an Agent Machine](#adding-an-nvidia-orin-jetson-nanoagx-device-as-an-agent-machine)
+        - [Loading an AI model to the Nvidia device as an Agent Machine](#loading-an-ai-model-to-the-nvidia-device-as-an-agent-machine)
+        - [Declaring a new Agent Collection that includes the Nvidia machine on the Coordinator Machine](#declaring-a-new-agent-collection-that-includes-the-nvidia-machine-on-the-coordinator-machine)
+        - [Connecting a second instance of the User Console web server to the Coordinator Machine](#connecting-a-second-instance-of-the-user-console-web-server-to-the-coordinator-machine)
+      - [Scenario 3: Setting Up and Running a Multi-Agent Collection](#scenario-3-setting-up-and-running-a-multi-agent-collection)
+        - [Adding Multiple Agent Machines to the mimik Service Mesh](#adding-multiple-agent-machines-to-the-mimik-service-mesh)
+        - [Loading AI Models to the Agent Machines](#loading-ai-models-to-the-agent-machines)
+        - [Declaring a new Agent Collection on  the Coordinator Machine](#declaring-a-new-agent-collection-on--the-coordinator-machine)
+        - [Connecting a new instance of the User Console web server to the Coordinator Machine](#connecting-a-new-instance-of-the-user-console-web-server-to-the-coordinator-machine)
 
 # Introduction to mimOE.ai
 
@@ -289,7 +289,7 @@ The table below describes the machine and releases of mimOE-SE-Linux v3.12.0 tha
 
 The details of each release, as well as Quickstart instructions for installation, are located at [the mimOE-SE-Linux-v3.12.0 Release page](https://github.com/mimik-mimOE/mimOE-SE-Linux/releases) on GitHub.
 
-# Implementing the Demonstration Scenarios
+## Implementing the Demonstration Scenarios
 
 The first scenario you'll run is a single-agent scenario under Agent Collection.
 
@@ -297,7 +297,7 @@ In the second scenario, you'll add an Nvidia Orin device to the mimik Service Me
 
 In the third scenario, you'll add two more Agent Machines to the mimik Service Mesh and run all under another distinctly named Agent Collection.
 
-## Setting up and running a Single Agent Collection scenario
+### Scenario 1: Setting up and running a Single Agent Collection scenario
 
 The Single Agent scenario is one in which the Agent Collection associated with the Coordinator Machine has only a single Agent Machine. The Coordinator Machine works with that machine in the Agent Collection; forwarding prompts the Coordinator Machine to synthesize. The User Console sends HTTP requests to the Coordinator Machine and receives prompt responses from the Agent Machine. The Coordinator Machine then synthesizes these responses.
 
@@ -309,25 +309,25 @@ Getting a single Agent Collection up and running is a three-part undertaking as 
 * Getting the Coordinator Machine up and running
 * Connecting the User Console to the Coordinator Machine via its `nodeId`.
 
-### Getting a single Agent Machine up and running
+#### Getting a single Agent Machine up and running
 
 The instructions for getting a single Agent Machine up and running are [here](01-single-agent-architecture/agent-machine/)
 
-### Loading an AI Model to the Agent Machine
+#### Loading an AI Model to the Agent Machine
 
 The instructions for loading an AI model to the Agent Machine are [here](01-single-agent-architecture/agent-machine/readme.md#Step-9)
 
-### Getting the Coordinator Machine up and running
+#### Getting the Coordinator Machine up and running
 
 The instructions for getting the Coordinator Machine up and running are [here](01-single-agent-architecture/coordinator-machine/)
 
-### Connecting the User Console to the Coordinator's Machine
+#### Connecting the User Console to the Coordinator's Machine
 
 The instructions for connecting the User Console to the Coordinator Machine are described [here](01-single-agent-architecture/user-console/).
 
 ---
 
-## Setting Up and Running an Agent Collection that includes an Nvidia Agent Machine
+### Scenario 2: Setting Up and Running an Agent Collection that includes an Nvidia Agent Machine
 
 **NOTE:** This demonstration scenario will only be implemented after completing the first scenario, which demonstrates how to use mimOE.ai to work with a single Agent Collection.
 
@@ -341,19 +341,19 @@ The figure below shows the demonstration scenario you'll be able to implement.
 
 ![Collection with Nvidia device](./images/nvidia-collection.png)
 
-### Adding an Nvidia Orin Jetson Nano/AGX device as an Agent Machine
+#### Adding an Nvidia Orin Jetson Nano/AGX device as an Agent Machine
 
 To learn how to add an Nvidia Orin Jetson Nano/AGX device as an Agent Machine on the mimik Service Mesh, go [here](./02-nvidia-architecture/nvidia-agent-machine/).
 
-### Loading an AI Model to the Nvidia Device as an Agent Machine
+#### Loading an AI Model to the Nvidia Device as an Agent Machine
 
 To learn how to load an AI model to the Agent Machine, go [here](./02-nvidia-architecture/nvidia-agent-machine/readme.md#Step-9).
 
-### Declaring a new Agent Collection that includes the Nvidia machine on the Coordinator Machine
+#### Declaring a new Agent Collection that includes the Nvidia machine on the Coordinator Machine
 
 To learn how to update the Coordinator Machine created in the last scenario with an additional Agent Collection that includes the newly added NVidia Agent Machine, go [here](./02-nvidia-architecture/coordinator-machine/).
 
-### Connecting a second instance of the User Console web server to the Coordinator Machine
+#### Connecting a second instance of the User Console web server to the Coordinator Machine
 
 To learn how to create a second instance of the User Console web server that connects to the Coordinator Machine with the new Agent Collection and the Nvidia device, go [here](./02-nvidia-architecture/user-console/).
 
@@ -361,7 +361,7 @@ To learn how to create a second instance of the User Console web server that con
 
 Please follow the instructions for setting up and using the new Agent Collection, which includes the NVidia Agent Machine, before proceeding to the following scenario.
 
-## Setting Up and Running a Multi-Agent Collection
+### Scenario 3: Setting Up and Running a Multi-Agent Collection
 
 This scenario enhances the previous one. In this scenario, you will add two more Agent Machines running edgeEngine to the mimik Service Mesh. Each machine will run the `mILM` microservice. Also, each machine will have an LLM loaded directly on it. The model is the same one configured and used on the single Agent Machine in the previous scenario.
 
@@ -377,19 +377,19 @@ As in the demonstration scenario executed previously, getting a Multi-Agent Coll
 * Configuring the Coordinator Machine to support an additional Agent Collection that includes the new Agent Machines and those Agent Machines created previously.
 * Connecting a new instance of User Console to the Coordinator Machine via its nodeId. The new instance of the User Console web server for this scenario will run on a new distinct port and will be bound to the Agent Collection created in this demonstration scenario.
 
-### Adding Multiple Agent Machines to the mimik Service Mesh
+#### Adding Multiple Agent Machines to the mimik Service Mesh
 
 To learn how to add new Agent Machines to the mimik Service Mesh, go [here](./03-multi-agent-architecture/agent-machines/).
 
-### Loading AI Models to the Agent Machines
+#### Loading AI Models to the Agent Machines
 
 To learn how to load a model to the Agent Machines, go [here](./03-multi-agent-architecture/agent-machines/readme.md).
 
-### Declaring a new Agent Collection on  the Coordinator's Machine 
+#### Declaring a new Agent Collection on  the Coordinator's Machine 
 
 To learn how to update the Coordinator Machine to support the additional Agent Machines, go [here](./03-multi-agent-architecture/coordinator-machine/).
 
-### Connecting a new instance of the User Console web server to the Coordinator Machine
+#### Connecting a new instance of the User Console web server to the Coordinator Machine
 
 To learn how to create an instance of the User Console web server bound to the newly created Agent Collection on the Coordinator Machine, go [here](./03-multi-agent-architecture/user-console/).
 
