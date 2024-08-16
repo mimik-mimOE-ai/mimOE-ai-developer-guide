@@ -1,8 +1,8 @@
 # Table of Contents
 
 - [Table of Contents](#table-of-contents)
-- [Introduction to mimiOE.ai](#introduction-to-mimOE.ai)
-  - [Welcome to mimiOE.ai](#welcome-to-mimOE.ai)
+- [Introduction to mimiOE.ai](#introduction-to-mimoeai)
+  - [Welcome to mimiOE.ai](#welcome-to-mimoeai)
   - [What is mimOE.ai?](#what-is-mimoeai)
   - [Key features and benefits](#key-features-and-benefits)
 - [Core Concepts and Architecture](#core-concepts-and-architecture)
