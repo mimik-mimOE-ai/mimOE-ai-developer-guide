@@ -22,7 +22,7 @@
     - [Working With setup.http Files](#working-with-setuphttp-files)
 - [Scenario Implementation](#scenario-implementation)
     - [What You Need to Have On Hand](#what-you-need-to-have-on-hand)
-    - [Hardware and Software Recommendations](#hardware-and-software-ecommendations)
+    - [Hardware and Software Recommendations](#hardware-and-software-recommendations)
 - [Implementing the Demonstration Scenarios](#implementing-the-demonstration-scenarios)
   - [Setting up and running a Single Agent Collection scenario](#setting-up-and-running-a-single-agent-collection-scenario)
     - [Getting a single Agent Machine up and running](#getting-a-single-agent-machine-up-and-running)
