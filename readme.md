@@ -49,7 +49,7 @@ mimOE.ai empowers developers to create sophisticated AI applications that levera
 
 This documentation describes mimOE.ai and how it works. It provides explanations and a set of hands-on demonstration projects showing developers how to work with the technology. The demonstration projects are progressive in that each builds upon activities implemented in a previous demonstration project.
 
-The demonstration projects illustrate three scenarios of progressive complexity. The `first scenario` you'll run is a single-agent scenario under Agent Collection. In the `second scenario`, you'll add an Nvidia Orin device to the mimik Service Mesh as an Agent Machine. You'll then create a new Agent Collection that includes the Agent Machine you made in the first scenario and the Nvidia Agent Machine. For this scenario, you’ll also make a distinctly named Agent Collection on the Coordinator Machine. In the `third scenario`, you'll add two more Agent Machines to the mimik Service Mesh and run all under another distinctly named Agent Collection. Through these scenarios, you will learn how to fetch and upload your AI model to the agents/computing nodes (steps will be highlighted in [mModelStore microservice](https://github.com/edgeMicroservice/mModelStore))
+The demonstration projects illustrate three scenarios of progressive complexity. The `first scenario` you'll run is an Agent Collection with a  single agent. In the `second scenario, you'll add an Nvidia Orin device to the mimik Service Mesh as an Agent Machine. You'll then create a new Agent Collection that includes the Agent Machine you made in the first scenario and the Nvidia Agent Machine. You’ll also make a distinctly named Agent Collection on the Coordinator Machine for this scenario. In the `third scenario, you'll add two more Agent Machines to the mimik Service Mesh and run all under another distinctly named Agent Collection. Through these scenarios, you will learn how to fetch and upload your AI model to the agents/computing nodes (steps will be highlighted in [mModelStore microservice](https://github.com/edgeMicroservice/mModelStore))
 
 Before discussing each scenario, a developer must understand the essential concepts and components of mimOE.ai. Once a developer understands these essentials, we'll provide the instructions for a developer to get direct hands-on experience with the scenarios via demonstration projects.
 
@@ -115,7 +115,7 @@ mimOE publishes several microservices that execute under the edgeEngine runtime 
 |mILM|A microservice that exposes a discoverable API interacting with an LLM. The implementation can either be done by exposing an API of an LLM that runs in the same process or acting as a proxy for an LLM that runs in a different process and exposes a non-discoverable API.|Go to the release page [HERE](https://github.com/edgeMicroservice/mILM)|
 |mAI|An implementation of an AI chain as a microservice. mAI acts as a coordination agent in a collection of AI agents that perform specific tasks. mAI has no hardware constraints and can run on machines that also run other agents. There can be more than one mAI per collection of agents; mAI defines a specific goal when dealing with multiple agents. When the AI chain is well-defined, it is possible to have a configuration-based microservice. However, when dealing with complex interactions, the mAI will have a specific code to implement the AI chain.|Go to the release page [HERE](https://github.com/edgeMicroservice/mAI)|
 |mKB|A microservice that uses a vector database to implement an augmented generation system. Documents are chunked and indexed by creating vector representations (embeddings) of the document. The result of the indexation is stored in a vector database. mKB is used in a collection of agents as an agent that has specific knowledge about a subject|Go to the release page [HERE](https://github.com/edgeMicroservice/mKB)|
-|mModelStore|A microservice that stores AI models and exposes discoverable API to allow other components (mILM, for example) to fetch the model for its own consumption. The component that fetches the model can be on the same machine or a different machine.|Go to the release page [HERE](https://github.com/edgeMicroservice/mModelStore)|
+|mModelStore|A microservice that stores AI models and exposes discoverable API to allow other components (mILM, for example) to fetch the model for its consumption. The component that fetches the model can be on the same machine or a different machine.|Go to the release page [HERE](https://github.com/edgeMicroservice/mModelStore)|
 
 In short, mimOE.ai's enhancements make working with AI faster, more secure, and more accurate.
 
@@ -252,7 +252,7 @@ When it comes time to do the hands-on demonstration projects, you'll need to hav
 
 ## Hardware and Software Recommendations
 
-As mentioned previously, for purposes of demonstration and education, you will create 3 scenarios of increasing complexity in a progressive manner. Each scenario builds on concepts and work done in the previous scenario.
+As mentioned previously, for demonstration and education purposes, you will create three scenarios of increasing complexity progressively. Each scenario builds on concepts and work done in the previous scenario.
 
 To review, these scenarios are:
 
@@ -266,7 +266,7 @@ These demonstration scenarios involve running several computers on the mimik Ser
 
 For `Scenario 1`, we recommend using an AMD computer for the Coordinator Machine and an ARM or AMD computer for the single Agent Machine.
 
-In `Scenario 2,` we demonstrate incorporating an Nvidia Orin Jetson Nano device into the mimik Service Mesh. Thus, you will need one available. In Scenario 2, you will use the existing Coordinator Machine you created in Scenario 1.
+In `Scenario 2,` we demonstrate incorporating an Nvidia Orin Jetson Nano device into the mimik Service Mesh. So, you will actually need one available. In Scenario 2, you will use the existing Coordinator Machine you created in Scenario 1.
 
 In `Scenario 3`, you will add two more Agent Machines to the mimik Service Mesh and configure mimOE.ai to support the additional AMD or ARM computers.
 
@@ -328,7 +328,7 @@ The instructions for connecting the User Console to the Coordinator Machine are 
 
 ### Scenario 2: Setting Up and Running an Agent Collection that includes an Nvidia Agent Machine
 
-**NOTE:** This demonstration scenario will only be implemented after completing the first scenario, which demonstrates how to use mimOE.ai to work with a single Agent Collection.
+**NOTE:** This demonstration scenario will only be implemented after completing the first scenario, demonstrating how to use mimOE.ai to work with a single Agent Collection.
 
 ---
 
