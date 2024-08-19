@@ -237,6 +237,8 @@ Authorization: Bearer {{edgeToken}}
 
 ### Step 9
 
+**Step 9** loads a model to the agent machine
+
 **IMPORTANT:** This command must be run from within a terminal window as a `cURL` command. You'll convert the entry for Step 5 in the `setup.http` file into a `cURL` command by using the *Copy Request as cURL* feature of the VS Code Rest Client.
 
 ![Copy Request as cURL](../images/copy-as-curl.png)
