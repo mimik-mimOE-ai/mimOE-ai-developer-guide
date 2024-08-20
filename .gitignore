@@ -1,8 +1,6 @@
 
-user-console/sitedata.js
-
-
-
+.env
+sitedata.js
 coordinator-machine/simple.http
 
 # These are some examples of commonly ignored file patterns.
