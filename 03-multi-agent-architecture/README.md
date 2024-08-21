@@ -31,7 +31,13 @@ This scenario requires that you have on hand two computers with AMD/Intel proces
 
 # What You'll be Doing
 
-In this scenario you will provision two Agent Machines using Visual Studio REST Client `setup.http` files. Then, you'll define a new Agent Collection on the existing Coordinator Machine. Finally, you'll create an instance of the User Console web server. You configure the User Console web server to work with the new Agent Collection. Once the User Console web server is configured, you'll be able to submit AI prompts to Coordinator Machine. The Coordinator Machine will return a result that include the response from each Agent Machine in the new Agent Collection. Also, the Coordinator Machine will return a unified response composed of the responses from each Agent Machine.
+In this scenario you will provision two Agent Machines using Visual Studio REST Client `setup.http` files.
+
+Then, you'll define a new Agent Collection on the existing Coordinator Machine.
+
+Finally, you'll create an instance of the User Console web server. You'll configure the User Console web server to work with the new Agent Collection. Once the User Console web server is configured, you'll be able to submit AI prompts to mimik Service mesh via the Coordinator Machine.
+
+The Coordinator Machine will return a result that include the response from each Agent Machine in the new Agent Collection. Also, the Coordinator Machine will return a unified response composed of the responses from each Agent Machine.
 
 # Configuring the Agent Machines
 
