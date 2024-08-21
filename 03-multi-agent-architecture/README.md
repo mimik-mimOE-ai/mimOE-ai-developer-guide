@@ -75,7 +75,7 @@ cp ./env.template ./agent-machine-04/.env
 
 ## Step 4: Configure the .env files
 
-Add the required values to the environment variables in the `.env` files in `agent_machine_03` and `agent_machine_04`
+Add the required values to the environment variables in the `.env` files in `agent-machine-03` and `agent-machine-04`
 
 Here is an example of a properly configured `.env` file:
 
