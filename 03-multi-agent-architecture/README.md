@@ -25,9 +25,7 @@ These Multi Agent Machines are the Agent Machines created previously in Scenario
 
 # What You Need to Have On Hand
 
-This scenario requires that you have on hand two computers with AMD/Intel processors. Each computer needs to be running the latest version of edgeEngine.
-
-We also assume that you have done Scenario 1 and Scenario 2 previously and that the machines configured and added the mimik Service Mesh in those scenarios are operational and accessible.
+This scenario requires that you have on hand two computers with AMD/Intel processors. Each computer needs to be running the latest version of edgeEngine. **We also assume** that you have done Scenario 1 and Scenario 2 previously and that the machines configured and added the mimik Service Mesh in those scenarios are operational and accessible.
 
 # What You'll be Doing
 
