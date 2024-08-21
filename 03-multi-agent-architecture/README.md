@@ -185,7 +185,7 @@ API_KEY=1234
 AGENT_COLLECTION_NAME=multi-agent-collection
 ```
 
-Here is an example of a properly configured `.env` for the Coordinator Machine for this scenario:
+Here is an example of a properly configured `.env` file for the Coordinator Machine for this scenario:
 
 ```
 # Environment variables for the Coordinator Machine
