@@ -17,6 +17,11 @@
 ### Setup API's 
 
 #### Step 1: Get Target Device Information. This call returns the NODE_ID for the device
+#### DO NOT FORGET to save the value returned for the NODE_ID and save it for later
+#### use when you run the setup.http for Coordinator Machine. You'll add an addition
+#### Agent Collection to the Coordinator Machine that includes the nodeId of this
+#### additional Agent Machine as well the nodeId of the other, new Agent Machine you'll
+#### create in this scenario.
 # @name jsonrpc
 POST {{host}}/jsonrpc/v1
 Content-Content-Type: application/json

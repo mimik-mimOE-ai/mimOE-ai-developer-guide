@@ -15,9 +15,10 @@
 
 ### Node Info
 ### Set the following values using the information returned from each constituent node's setup.http file.
-@nodeId1_AI-CHAT-3 = {{$dotenv NODE_ID_AGENT_1}}
-@nodeId2_AI-CHAT-4 = {{$dotenv NODE_ID_NVIDIA_AGENT}}
-
+@nodeId1_AI_MACHINE = {{$dotenv NODE_ID_AGENT_1}}
+@nodeId2_AI_MACHINE = {{$dotenv NODE_ID_NVIDIA_AGENT}}
+@nodeId3_AI_MACHINE = {{$dotenv NODE_ID_AGENT_3}}
+@nodeId4_AI_MACHINE = {{$dotenv NODE_ID_AGENT_4}}
 @nodeId_COORDINATOR = {{$dotenv NODE_ID_COORDINATOR}}
 
 ### Setup API's 
@@ -29,7 +30,6 @@ Content-Content-Type: application/json
 
 {"jsonrpc": "2.0", "method": "getMe", "params": [], "id": 1}
 
-
 #####
 #### Step 2: Get edgeIdToken
 # @name jsonrpc
@@ -40,7 +40,6 @@ Content-Content-Type: application/json
 
 #### Save Token  to the local file variable
 @edgeIdToken={{jsonrpc.response.body.$.result.id_token}}
-
 
 #####
 #### Step 3: Get Access Token
@@ -88,13 +87,25 @@ Authorization: bearer {{apiKey}}
   "modelfile": {
     "prompts": [
       {
-        "url": "{{nodeId1_AI-CHAT-1}}@mmesh/{{clientId}}/mim/v1/chat/completions",
+        "url": "{{nodeId1_AI_MACHINE}}@mmesh/{{clientId}}/mim/v1/chat/completions",
         "model": "lmstudio-ai/gemma-2b-it-GGUF",
         "apikey": "Bearer {{apiKey}}",
         "required": true
       },
       {
-        "url": "{{nodeId2_AI-CHAT-2}}@mmesh/{{clientId}}/mim/v1/chat/completions",
+        "url": "{{nodeId2_AI_MACHINE}}@mmesh/{{clientId}}/mim/v1/chat/completions",
+        "model": "lmstudio-ai/gemma-2b-it-GGUF",
+        "apikey": "Bearer {{apiKey}}",
+        "required": false
+      },
+      {
+        "url": "{{nodeId3_AI_MACHINE}}@mmesh/{{clientId}}/mim/v1/chat/completions",
+        "model": "lmstudio-ai/gemma-2b-it-GGUF",
+        "apikey": "Bearer {{apiKey}}",
+        "required": false
+      },
+      {
+        "url": "{{nodeId4_AI_MACHINE}}@mmesh/{{clientId}}/mim/v1/chat/completions",
         "model": "lmstudio-ai/gemma-2b-it-GGUF",
         "apikey": "Bearer {{apiKey}}",
         "required": false
