@@ -124,6 +124,31 @@ Content-Content-Type: application/json
 
 You'll need the two `nodeId` values when you add an additional Agent Collection to the Coordinator Machine.
 
+The following code snippet is an example of output returned from the command shown above. Notice that the `nodeId` in this case is `8bafdd2a35e17133011bbc98062f132a4c5aca249a82936d0d27a49a`.
+
+```
+HTTP/1.1 200 OK
+Access-Control-Allow-Methods: GET, POST, DELETE, PUT, OPTIONS
+Access-Control-Allow-Origin: *
+Connection: close
+Content-Length: 342
+Content-Type: application/json
+Date: Wed, 21 Aug 2024 22:44:00 GMT
+
+{
+  "id": 1,
+  "jsonrpc": "2.0",
+  "result": {
+    "accountId": "d4011bb5-81dd-4011-9471-d76b56e001d7__2972174601916518400",
+    "linkLocalIp": "192.168.86.35",
+    "name": "pi2",
+    "nodeId": "8bafdd2a35e17133011bbc98062f132a4c5aca249a82936d0d27a49a",
+    "supernodeTypeName": "_mk-v15-4996e4c2442cc796f2c0ddb4e5e1627d._tcp",
+    "version": "v3.11.0.ml.71.g577be1f5 (developer edition)"
+  }
+}
+```
+
 ---
 
 
