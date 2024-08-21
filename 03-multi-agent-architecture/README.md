@@ -67,7 +67,7 @@ The file named `env.template` contains the declaration of the environment variab
 cp ./env.template ./agent-machine-03/.env
 ```
 
-Execute the following command in a terminal window to copy the contents of the `env.template` into the `.env` file for one of the other new Agent Machines.
+Execute the following command in a terminal window to copy the contents of the `env.template` into the `.env` file for the other new Agent Machines.
 
 ```
 cp ./env.template ./agent-machine-04/.env
