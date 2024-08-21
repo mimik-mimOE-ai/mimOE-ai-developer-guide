@@ -98,7 +98,7 @@ In a terminal window, execute the following command to copy the contents of `set
 cp ./setup.template ./agent-machine-03/setup.http
 ```
 
-In a terminal window, execute the following command to copy the contents of `setup.template` into the `setup.http` file for the other new Agent Machines.
+In a terminal window, execute the following command to copy the contents of `setup.template` into the `setup.http` file for the other new Agent Machine.
 
 ```
 cp ./setup.template ./agent-machine-04/setup.http
