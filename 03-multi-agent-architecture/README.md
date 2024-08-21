@@ -6,7 +6,7 @@
 - [Configuring the Agent Machines](#configuring-the-agent-machines)
   - [Step 1: Create working directories for each Agent Machine](#step-1-create-working-directories-for-each-agent-machine)
   - [Step 2: Navigate to the subdirectory agent-machines](#step-2-navigate-to-the-subdirectory-agent-machines)
-  - [Step 3: Create working directories for each Agent Machine](#step-3-create-working-directories-for-each-agent-machine)
+  - [Step 3: Create the .env and setup.http files for each Agent Machine](#step-3-create-the-env-and-setuphttp-files-for-each-agent-machine)
   - [Step 4: Configure the .env files](#step-4-configure-the-env-files)
   - [Step 5: Create the setup.http file for each Agent Machine's working directory](#step-5-create-the-setuphttp-file-for-each-agent-machines-working-directory)
   - [Step 6: Execute the setup.http files in the Agent Machine working directories](#step-6-execute-the-setuphttp-files-in-the-agent-machine-working-directories)
@@ -47,7 +47,7 @@ Execute the following steps to get the 2 new Agent Machines up and running.
 
 You'll need to create working directories for each of the new Agent Machines. 
 
-From the root of this repository file system and execute the following command in a terminal window to create the working directories for the two Agent Machines.
+From the root of this repository's file system, execute the following command in a terminal window to create the working directories for the two Agent Machines.
 
 ```
 mkdir 03-multi-agent-architecture/agent-machines/agent-machine-03 && mkdir 03-multi-agent-architecture/agent-machines/agent-machine-04
@@ -59,7 +59,7 @@ mkdir 03-multi-agent-architecture/agent-machines/agent-machine-03 && mkdir 03-mu
 cd 03-multi-agent-architecture/agent-machines
 ```
 
-## Step 3: Create working directories for each Agent Machine
+## Step 3: Create the .env and setup.http files for each Agent Machine
 
 The file named `env.template` contains the declaration of the environment variables that the two Agent Machine `setup.http` files need. Execute the following command in a terminal window to copy the contents of the `env.template` into the `.env` file for one of the new Agent Machines.
 
