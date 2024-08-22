@@ -3,13 +3,11 @@
 - [Setting Up a Multiple Agent Machine Scenario](#setting-up-a-multiple-agent-machine-scenario)
 - [What You Need to Have On Hand](#what-you-need-to-have-on-hand)
 - [What You'll be Doing](#what-youll-be-doing)
-- [Configuring the Agent Machines](#configuring-the-agent-machines)
-  - [Step 1: Create working directories for each Agent Machine](#step-1-create-working-directories-for-each-agent-machine)
-  - [Step 2: Navigate to the subdirectory agent-machines](#step-2-navigate-to-the-subdirectory-agent-machines)
-  - [Step 3: Create the .env and setup.http files for each Agent Machine](#step-3-create-the-env-and-setuphttp-files-for-each-agent-machine)
-  - [Step 4: Configure the .env files](#step-4-configure-the-env-files)
-  - [Step 5: Create the setup.http file for each Agent Machine's working directory](#step-5-create-the-setuphttp-file-for-each-agent-machines-working-directory)
-  - [Step 6: Execute the setup.http files in the Agent Machine working directories](#step-6-execute-the-setuphttp-files-in-the-agent-machine-working-directories)
+- [Configuring the new Agent Machine](#configuring-the-new-agent-machine)
+  - [Step 1: Navigate to the working directory for this scenario](#step-1-navigate-to-the-working-directory-for-this-scenario)
+  - [Step 2: Create the .env and setup.http files for each Agent Machine](#step-2-create-the-env-and-setuphttp-files-for-each-agent-machine)
+  - [Step 3: Configure the .env files](#step-3-configure-the-env-files)
+  - [Step 4: Execute the setup.http files in the Agent Machine working directories](#step-4-execute-the-setuphttp-files-in-the-agent-machine-working-directories)
 - [Configuring the new Agent Collection on the Coordinator Machine](#configuring-the-new-agent-collection-on-the-coordinator-machine)
   - [Step 1: Navigate back to the root directory of the working directory](#step-1-navigate-back-to-the-root-directory-of-the-working-directory)
   - [Step 2: Create the .env file](#step-2-create-the-env-file)
@@ -32,49 +30,41 @@ This scenario requires that you have on hand two computers with AMD/Intel proces
 
 # What You'll be Doing
 
-In this scenario you will provision two Agent Machines using Visual Studio REST Client `setup.http` files.
+In this scenario you will provision a new Agent Machines using Visual Studio REST Client `setup.http` files.
 
-Then, you'll define a new Agent Collection on the existing Coordinator Machine.
+Then, you'll define a new Agent Collection on the existing Coordinator Machine that has new Agent Machine created in this scenario along with the two Agent Machines created previously in Scenario 1 and Scenario 2.
 
 Finally, you'll create an instance of the User Console web server. You'll configure the User Console web server to work with the new Agent Collection. Once the User Console web server is configured, you'll be able to submit AI prompts to the mimik Service Mesh via the Coordinator Machine.
 
 The Coordinator Machine will return a result that includes the response from each Agent Machine in the new Agent Collection. Also, the Coordinator Machine will return a unified response composed of the responses from each Agent Machine.
 
-# Configuring the Agent Machines
+|IMPORTANT NOTE|
+|:----:|
+|The **maximum** number of Agent Machines an Agent Collection can have is 3.|
 
-Execute the following steps to get the 2 new Agent Machines up and running.
+# Configuring the new Agent Machine
 
-## Step 1: Create working directories for each Agent Machine
+Execute the following steps to get the new Agent Machines up and running.
 
-You'll need to create working directories for each of the new Agent Machines. 
+## Step 1: Navigate to the working directory for this scenario
 
-From the root of this repository's file system, execute the following command in a terminal window to create the working directories for the two Agent Machines.
-
-```
-mkdir 03-multi-agent-architecture/agent-machines/agent-machine-03 && mkdir 03-multi-agent-architecture/agent-machines/agent-machine-04
-```
-
-## Step 2: Navigate to the subdirectory agent-machines
+Execute the following command in a terminal wingdow to navigate to the root directory of the file system for you local copy of the Developer Guide repository.
 
 ```
-cd 03-multi-agent-architecture/agent-machines
+cd 03-multi-agent-architecture
 ```
 
-## Step 3: Create the .env and setup.http files for each Agent Machine
 
-The file named `env.template` contains the declaration of the environment variables that the two Agent Machine `setup.http` files need. Execute the following command in a terminal window to copy the contents of the `env.template` into the `.env` file for one of the new Agent Machines.
+## Step 2: Create the .env and setup.http files for each Agent Machine
 
-```
-cp ./env.template ./agent-machine-03/.env
-```
-
-Execute the following command in a terminal window to copy the contents of the `env.template` into the `.env` file for the other new Agent Machines.
+The file named `env.template` contains the declaration of the environment variables that the two Agent Machine `setup.http` files need. Execute the following command in a terminal window to copy the contents of the `env.template` into the `.env` file for the new Agent Machine.
 
 ```
-cp ./env.template ./agent-machine-04/.env
+cp ./env.template .env
 ```
 
-## Step 4: Configure the .env files
+
+## Step 3: Configure the .env files
 
 Add the required values to the environment variables in the `.env` files in `agent-machine-03` and `agent-machine-04`
 
@@ -89,25 +79,10 @@ DEVELOPER_ID_TOKEN=eyJhbGcixxxxxxxxxxxIsInR5cCI6IkpXVCIsImtpZCI6Ik80d0NjU0FFMkxk
 API_KEY=1234
 ```
 
-## Step 5: Create the setup.http file for each Agent Machine's working directory
 
-The file `setup.template` has the structure and data that you'll copy into a `setup.http` file for each Agent Machine's working directory. You'll copy the contents of `setup.template` into a `setup.http` file in each Agent Machine's working directory.
+## Step 4: Execute the setup.http files in the Agent Machine working directories
 
-In a terminal window, execute the following command to copy the contents of `setup.template` into the `setup.http` file for one of the new Agent Machines.
-
-```
-cp ./setup.template ./agent-machine-03/setup.http
-```
-
-In a terminal window, execute the following command to copy the contents of `setup.template` into the `setup.http` file for the other new Agent Machine.
-
-```
-cp ./setup.template ./agent-machine-04/setup.http
-```
-
-## Step 6: Execute the setup.http files in the Agent Machine working directories
-
-Go to the `setup.http` file in the working directories for each of the new Agent Machines and run the commands therein.
+Go to the `setup.http` file in the working directory and execute the commands in the file using VS Code's REST Client extension
 
 ---
 
@@ -154,6 +129,7 @@ Date: Wed, 21 Aug 2024 22:44:00 GMT
 
 
 # Configuring the new Agent Collection on the Coordinator Machine
+
 
 ## Step 1: Navigate back to the root directory of the working directory
 

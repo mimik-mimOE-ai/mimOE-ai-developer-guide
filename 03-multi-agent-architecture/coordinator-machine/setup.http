@@ -1,5 +1,10 @@
 ### Configuration 
 @host = http://{{$dotenv HOST_IP_ADDRESS}}:8083
+
+@machine1 = http://{{$dotenv IP_ADDRESS_AGENT_1}}:8083
+@machine2 = http://{{$dotenv IP_ADDRESS_NVIDIA_AGENT}}:8083
+@machine3 = http://{{$dotenv IP_ADDRESS_AGENT_3}}:8083
+
 @developerIdToken={{$dotenv DEVELOPER_ID_TOKEN}}
 @clientId={{$dotenv CLIENT_ID}}
 @apiKey={{$dotenv API_KEY}}
@@ -18,14 +23,34 @@
 @nodeId1_AI_MACHINE = {{$dotenv NODE_ID_AGENT_1}}
 @nodeId2_AI_MACHINE = {{$dotenv NODE_ID_NVIDIA_AGENT}}
 @nodeId3_AI_MACHINE = {{$dotenv NODE_ID_AGENT_3}}
-@nodeId4_AI_MACHINE = {{$dotenv NODE_ID_AGENT_4}}
 @nodeId_COORDINATOR = {{$dotenv NODE_ID_COORDINATOR}}
 
 ### Setup API's 
 
-#### Step 1: Query the target device. This call returns the NODE_ID for the device and verify that the device is accessible.
+#### Step 1a: Query the target device. This call returns the NODE_ID for the device and verify that the device is accessible.
 # @name jsonrpc
 POST {{host}}/jsonrpc/v1
+Content-Content-Type: application/json
+
+{"jsonrpc": "2.0", "method": "getMe", "params": [], "id": 1}
+
+####
+#### Step 1b: Verify that the miscroservices are running on Agent Machine 1
+POST {{machine1}}/jsonrpc/v1
+Content-Content-Type: application/json
+
+{"jsonrpc": "2.0", "method": "getMe", "params": [], "id": 1}
+
+####
+#### Step 1c: Verify that the miscroservices are running on Nvidia Agent Machine
+POST {{machine2}}/jsonrpc/v1
+Content-Content-Type: application/json
+
+{"jsonrpc": "2.0", "method": "getMe", "params": [], "id": 1}
+
+####
+#### Step 1d: Verify that the miscroservices are running on Agent Machine 3
+POST {{machine3}}/jsonrpc/v1
 Content-Content-Type: application/json
 
 {"jsonrpc": "2.0", "method": "getMe", "params": [], "id": 1}
@@ -65,7 +90,7 @@ Content-Content-Type: application/json
 {"jsonrpc": "2.0", "method": "associateAccount", "params": ["{{edgeToken}}"], "id": 1}
 
 ####
-#### Step 5: Verify that the miscroservices are running
+#### Step 5a: Verify that the miscroservices are running on the Coordinator Machine
 GET {{host}}/mcm/v1/containers
 Authorization: Bearer {{edgeToken}}
 
