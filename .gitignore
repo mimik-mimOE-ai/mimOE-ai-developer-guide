@@ -6,6 +6,9 @@ sitedata.js
 03-multi-agent-architecture/agent-machines/agent-machine-04/.env
 03-multi-agent-architecture/agent-machines/agent-machine-04/setup.http
 
+.sitedata.js
+03-multi-agent-architecture/user-console/sitedata.js
+
 # These are some examples of commonly ignored file patterns.
 # You should customize this list as applicable to your project.
 # Learn more about .gitignore:

@@ -103,12 +103,6 @@ Authorization: bearer {{apiKey}}
         "model": "lmstudio-ai/gemma-2b-it-GGUF",
         "apikey": "Bearer {{apiKey}}",
         "required": false
-      },
-      {
-        "url": "{{nodeId4_AI_MACHINE}}@mmesh/{{clientId}}/mim/v1/chat/completions",
-        "model": "lmstudio-ai/gemma-2b-it-GGUF",
-        "apikey": "Bearer {{apiKey}}",
-        "required": false
       }
     ],
     "summary": {

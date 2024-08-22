@@ -11,9 +11,10 @@
   - [Step 5: Create the setup.http file for each Agent Machine's working directory](#step-5-create-the-setuphttp-file-for-each-agent-machines-working-directory)
   - [Step 6: Execute the setup.http files in the Agent Machine working directories](#step-6-execute-the-setuphttp-files-in-the-agent-machine-working-directories)
 - [Configuring the new Agent Collection on the Coordinator Machine](#configuring-the-new-agent-collection-on-the-coordinator-machine)
-  - [Step 1: Create the .env file](#step-1-create-the-env-file)
-  - [Step 2: Configure the .env file](#step-2-configure-the-env-file)
-  - [Step 3: Execute the commands in setup.http](#step-3-execute-the-commands-in-setuphttp)
+  - [Step 1: Navigate back to the root directory of the working directory](#step-1-navigate-back-to-the-root-directory-of-the-working-directory)
+  - [Step 2: Create the .env file](#step-2-create-the-env-file)
+  - [Step 3: Configure the .env file](#step-3-configure-the-env-file)
+  - [Step 4: Execute the commands in setup.http](#step-4-execute-the-commands-in-setuphttp)
 - [Getting an Instance of the User Console Up and running](#getting-an-instance-of-the-user-console-up-and-running)
   - [Step 1: Configuring the sitedata.js file](#step-1-configuring-the-sitedatajs-file)
   - [Step 2: Running the User Console web server](#step-2-running-the-user-console-web-server)
@@ -154,17 +155,22 @@ Date: Wed, 21 Aug 2024 22:44:00 GMT
 
 # Configuring the new Agent Collection on the Coordinator Machine
 
-## Step 1: Create the .env file
+## Step 1: Navigate back to the root directory of the working directory
+
+Go back to the root directory of the file system for this repository.
+
+## Step 2: Create the .env file
 
 In a terminal window, execute the following command to copy the contents of the file `./coordinator-machine/env.template` into the file `./coordinator-machine/.env`.
 
 ```
-cp ./coordinator-machine/env.template ./coordinator-machine/.env
+cp ./03-multi-agent-architecture/coordinator-machine/env.template ./03-multi-agent-architecture/coordinator-machine/.env
 ```
 
-## Step 2: Configure the .env file
 
-Configure the `.env` file with the required information.
+## Step 3: Configure the .env file
+
+Configure the `.env` file in the directory, `03-multi-agent-architecture/coordinator-machine/` with the required information.
 
 Here is the format of the `.env` file in need of values for the required environment variables:
 
@@ -204,7 +210,7 @@ API_KEY=1234
 AGENT_COLLECTION_NAME=multi-agent-collection
 ```
 
-## Step 3: Execute the commands in setup.http
+## Step 4: Execute the commands in setup.http
 
 The file `setup.http` contains the commands for creating the Agent Collection that includes the Agent and Nvidia Machines created in previous scenarios along with the new Agent Machines created in this scenario.
 
