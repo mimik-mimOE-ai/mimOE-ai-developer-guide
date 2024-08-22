@@ -27,7 +27,7 @@
 
 ### Setup API's 
 
-#### Step 1a: Query the target device. This call returns the NODE_ID for the device and verify that the device is accessible.
+#### Step 1a: Query the Coordinator Machine. This call returns the NODE_ID for the device and verify that the device is accessible.
 # @name jsonrpc
 POST {{host}}/jsonrpc/v1
 Content-Content-Type: application/json
@@ -90,9 +90,10 @@ Content-Content-Type: application/json
 {"jsonrpc": "2.0", "method": "associateAccount", "params": ["{{edgeToken}}"], "id": 1}
 
 ####
-#### Step 5a: Verify that the miscroservices are running on the Coordinator Machine
+#### Step 5: Verify that the miscroservices are running on the Coordinator Machine
 GET {{host}}/mcm/v1/containers
 Authorization: Bearer {{edgeToken}}
+
 
 ######
 ### Step 6: Verify that the model has been deployed 
