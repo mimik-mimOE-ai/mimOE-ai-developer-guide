@@ -65,7 +65,7 @@
         const userInput = document.getElementById('user-input');
         const sendButton = document.getElementById('send-button');
         const API_KEY = `${config.API_KEY}`;
-        const API_URL =`http://${config.CONTROLLER_IP_ADDRESS}:8083/api/mai/v1/chat/completions`
+        const API_URL =`http://${config.COORDINATOR_IP_ADDRESS}:8083/api/mai/v1/chat/completions`
         marked.setOptions({
             highlight: function(code, lang) {
                 return code;
