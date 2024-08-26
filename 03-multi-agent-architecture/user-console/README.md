@@ -86,6 +86,6 @@ python3 -m http.server 8005
 
 In order to operate the Use Console, enter a prompt in the text box and then click the `Send` button at the lower part of the web page. 
 
-![User Console](./images/user-console-02.png)
+![User Console](./images/user-console-01.png)
 
 

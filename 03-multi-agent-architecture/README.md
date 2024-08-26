@@ -204,6 +204,8 @@ Under Visual Studio Code, execute the code commands in `./coordinator-machine/se
 
 # Getting an Instance of the User Console Up and running
 
+![Scenario 3 User Console](./user-console/images/user-console-01.png);
+
 Getting the User Console up and running is a two-step process. First, you need to configure the `sitedata.json` file with the necessary runtime information. Then you need to start the User Console web server.
 
 ## Step 1: Configuring the sitedata.js file
