@@ -217,7 +217,7 @@ Set the IP address of the Coordinator Machine in the file named `./user-console/
 ```
 config = {
   "API_KEY": "1234",
-  "COORDINATOR_IP_ADDRESS": <IP_ADDRESS_OF_COORDINATOR_IP_ADDRESS>>
+  "COORDINATOR_IP_ADDRESS": <IP_ADDRESS_OF_COORDINATOR_MACHINE>
   "AGENT_COLLECTION_NAME": "standard-node-nvidia-collection"
 };
 ```
