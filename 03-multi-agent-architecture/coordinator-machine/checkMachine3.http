@@ -1,3 +1,9 @@
+#######
+# The purpose of this file is provide a way to verify that the microservices
+# are running on the third agent machine in the multi-agent collection
+#######
+
+
 ### Configuration 
 @host = http://{{$dotenv HOST_IP_ADDRESS}}:8083
 

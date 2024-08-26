@@ -35,10 +35,6 @@
       - [Declaring a new Agent Collection that includes the Nvidia machine on the Coordinator Machine](#declaring-a-new-agent-collection-that-includes-the-nvidia-machine-on-the-coordinator-machine)
       - [Connecting a second instance of the User Console web server to the Coordinator Machine](#connecting-a-second-instance-of-the-user-console-web-server-to-the-coordinator-machine)
     - [Scenario 3: Setting Up and Running a Multi-Agent Collection](#scenario-3-setting-up-and-running-a-multi-agent-collection)
-      - [Running a Scenario with Multiple Agent Machines](#running-a-scenario-with-multiple-agent-machines)
-      - [Loading AI Models to the Agent Machines](#loading-ai-models-to-the-agent-machines)
-      - [Declaring a new Agent Collection on  the Coordinator's Machine](#declaring-a-new-agent-collection-on--the-coordinators-machine)
-      - [Connecting a new instance of the User Console web server to the Coordinator Machine](#connecting-a-new-instance-of-the-user-console-web-server-to-the-coordinator-machine)
 
 # Introduction to mimOE.ai
 
@@ -114,9 +110,10 @@ mimOE publishes several microservices that execute under the edgeEngine runtime 
 |Microservice|Description||
 |----|----|----|
 |mILM|A microservice that exposes a discoverable API interacting with an LLM. The implementation can either be done by exposing an API of an LLM that runs in the same process or acting as a proxy for an LLM that runs in a different process and exposes a non-discoverable API.|Go to the release page [HERE](https://github.com/edgeMicroservice/mILM)|
-|mAI|An implementation of an AI chain as a microservice. mAI acts as a coordination agent in a collection of AI agents that perform specific tasks. mAI has no hardware constraints and can run on machines that also run other agents. There can be more than one mAI per collection of agents; mAI defines a specific goal when dealing with multiple agents. When the AI chain is well-defined, it is possible to have a configuration-based microservice. However, when dealing with complex interactions, the mAI will have a specific code to implement the AI chain.|Go to the release page [HERE](https://github.com/edgeMicroservice/mAI)|
+|mAI (aka mAIChain)|An implementation of an AI chain as a microservice. mAI acts as a coordination agent in a collection of AI agents that perform specific tasks. mAI has no hardware constraints and can run on machines that also run other agents. There can be more than one mAI per collection of agents; mAI defines a specific goal when dealing with multiple agents. When the AI chain is well-defined, it is possible to have a configuration-based microservice. However, when dealing with complex interactions, the mAI will have a specific code to implement the AI chain.|Go to the release page [HERE](https://github.com/edgeMicroservice/mAI)|
 |mKB|A microservice that uses a vector database to implement an augmented generation system. Documents are chunked and indexed by creating vector representations (embeddings) of the document. The result of the indexation is stored in a vector database. mKB is used in a collection of agents as an agent that has specific knowledge about a subject|Go to the release page [HERE](https://github.com/edgeMicroservice/mKB)|
 |mModelStore|A microservice that stores AI models and exposes discoverable API to allow other components (mILM, for example) to fetch the model for its consumption. The component that fetches the model can be on the same machine or a different machine.|Go to the release page [HERE](https://github.com/edgeMicroservice/mModelStore)|
+| mInsight|A microservice that allows a developer to access the context in which the node running mInsight is. It provides insights into AI agents’ interactions and their operating context. The context is based on three scopes: network, proximity, and account, and it contains the list of nodes with their attributes and the microservices (mKB, mAI, mILM, mModelStore, and others) running on each node.|Go to the release page [HERE](https://github.com/edgeMicroservice/mInsight)|
 
 In short, mimOE.ai's enhancements make working with AI faster, more secure, and more accurate.
 
@@ -377,20 +374,5 @@ As in the demonstration scenario executed previously, getting a Multi-Agent Coll
 * Configuring the Coordinator Machine to support an additional Agent Collection that includes the new Agent Machines and those Agent Machines created previously.
 * Connecting a new instance of User Console to the Coordinator Machine via its nodeId. The new instance of the User Console web server for this scenario will run on a new distinct port and will be bound to the Agent Collection created in this demonstration scenario.
 
-#### Running a Scenario with Multiple Agent Machines
-
-To learn how run a scenario with an Agent Collection of multiple Agent Machines, go [here](./03-multi-agent-architecture/readme.md).
-
-#### Loading AI Models to the Agent Machines
-
-To learn how to load a model to the Agent Machines, go [here](./03-multi-agent-architecture/agent-machines/readme.md).
-
-#### Declaring a new Agent Collection on  the Coordinator's Machine 
-
-To learn how to update the Coordinator Machine to support the additional Agent Machines, go [here](./03-multi-agent-architecture/coordinator-machine/).
-
-#### Connecting a new instance of the User Console web server to the Coordinator Machine
-
-To learn how to create an instance of the User Console web server bound to the newly created Agent Collection on the Coordinator Machine, go [here](./03-multi-agent-architecture/user-console/).
-
+To learn the details of getting Scenario 3 up and running go [HERE](03-multi-agent-architecture/README.md).
 

@@ -30,9 +30,9 @@ This scenario requires that you have on hand two computers with AMD/Intel proces
 
 # What You'll be Doing
 
-In this scenario you will provision a new Agent Machines using Visual Studio REST Client `setup.http` files.
+In this scenario, you will provision a new Agent Machine using Visual Studio REST Client `setup.http` files.
 
-Then, you'll define a new Agent Collection on the existing Coordinator Machine that has new Agent Machine created in this scenario along with the two Agent Machines created previously in Scenario 1 and Scenario 2.
+Then, you'll define a new Agent Collection on the existing Coordinator Machine that has the new Agent Machine created in this scenario along with the two Agent Machines created previously in Scenario 1 and Scenario 2.
 
 Finally, you'll create an instance of the User Console web server. You'll configure the User Console web server to work with the new Agent Collection. Once the User Console web server is configured, you'll be able to submit AI prompts to the mimik Service Mesh via the Coordinator Machine.
 
@@ -40,7 +40,7 @@ The Coordinator Machine will return a result that includes the response from eac
 
 |IMPORTANT NOTE|
 |:----:|
-|The **maximum** number of Agent Machines an Agent Collection can have is 3.|
+|The **maximum** number of Agent Machines an Agent Collection can have using the default LLM for this scenario, [gemma-2b-it-q4_k_m.gguf](https://huggingface.co/lmstudio-ai/gemma-2b-it-GGUF/tree/main) is 3.|
 
 # Configuring the new Agent Machine
 
@@ -48,7 +48,7 @@ Execute the following steps to get the new Agent Machines up and running.
 
 ## Step 1: Navigate to the working directory for this scenario
 
-Execute the following command in a terminal wingdow to navigate to the root directory of the file system for you local copy of the Developer Guide repository.
+Execute the following command in a terminal window to navigate to the root directory of the file system of your local copy of the Developer Guide repository.
 
 ```
 cd 03-multi-agent-architecture
@@ -100,7 +100,7 @@ Content-Content-Type: application/json
 
 You'll need the two `nodeId` values when you add an additional Agent Collection to the Coordinator Machine.
 
-The following code snippet is an example of output returned from the command shown above. Notice that the `nodeId` in this case is `8bafdd2a35e17133011bbc98062f132a4c5aca249a82936d0d27a49a`.
+The following code snippet is an example of the output returned from the command shown above. Notice that the `nodeId`, in this case, is `8bafdd2a35e17133011bbc98062f132a4c5aca249a82936d0d27a49a`.
 
 ```
 HTTP/1.1 200 OK
@@ -146,7 +146,7 @@ cp ./03-multi-agent-architecture/coordinator-machine/env.template ./03-multi-age
 
 ## Step 3: Configure the .env file
 
-Configure the `.env` file in the directory, `03-multi-agent-architecture/coordinator-machine/` with the required information.
+Configure the `.env` file in the directory `03-multi-agent-architecture/coordinator-machine/` with the required information.
 
 Here is the format of the `.env` file in need of values for the required environment variables:
 
@@ -197,7 +197,7 @@ AGENT_COLLECTION_NAME=multi-agent-collection
 
 ## Step 4: Execute the commands in setup.http
 
-The file `setup.http` contains the commands for creating the Agent Collection that includes the Agent and Nvidia Machines created in previous scenarios along with the new Agent Machines created in this scenario.
+The file `setup.http` contains the commands for creating the Agent Collection that includes the Agent and Nvidia , along with the new Agent Machines created in this scenario.
 
 Under Visual Studio Code, execute the code commands in `./coordinator-machine/setup.http`
 
@@ -236,7 +236,7 @@ Once the `sitedata.js` file has been configured, you're ready to start the web s
 
 ## Step 2: Running the User Console web server
 
-In a terminal window, navigate to  `03-multi-agent-architecture/user-console` directory and start the web server by executing the following command:
+In a terminal window, navigate to the  `03-multi-agent-architecture/user-console` directory and start the web server by executing the following command:
 
 
 
