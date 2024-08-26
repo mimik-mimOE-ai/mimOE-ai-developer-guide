@@ -217,7 +217,7 @@ Set the IP address of the Coordinator Machine in the file named `./user-console/
 ```
 config = {
   "API_KEY": "1234",
-  "CONTROLLER_IP_ADDRESS": <IP_ADDRESS_OF_COORDINATOR_MACHINE>>
+  "COORDINATOR_IP_ADDRESS": <IP_ADDRESS_OF_COORDINATOR_IP_ADDRESS>>
   "AGENT_COLLECTION_NAME": "standard-node-nvidia-collection"
 };
 ```
@@ -229,7 +229,7 @@ Here is an example of a properly configured `sitedata.js` file.
 ```
 config = {
   "API_KEY": "1234",
-  "CONTROLLER_IP_ADDRESS": "192.168.86.21",
+  "CCOORDINATOR_IP_ADDRESS": "192.168.86.21",
   "AGENT_COLLECTION_NAME": "standard-node-nvidia-collection"
 };
 ```
