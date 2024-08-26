@@ -20,11 +20,11 @@
 
 The purpose of Scenario 3 is to demonstrate how to add Agent Machines to the mimik Service Mesh and then to modify the existing Coordinator Machine by adding a new Agent Collection that supports Multi Agent Machines.
 
-These Multi Agent Machines are the Agent Machines created previously in Scenario 1 and 2, plus the two new Agent Machines you'll create in this scenario.
+The machines in the scenario are the Agent Machines created previously in Scenario 1 and 2, plus a new Agent Machines you'll create in this scenario.
 
 # What You Need to Have On Hand
 
-This scenario requires that you have on hand two computers with AMD/Intel processors. Each computer needs to be running the latest version of edgeEngine.
+This scenario requires that you have an additional machine on hand with either AMD/Intel or ARM processors. Each computer needs to be running the [latest version of edgeEngine](https://github.com/mimik-mimOE/mimOE-SE-Linux).
 
 **We also assume** that you have done Scenario 1 and Scenario 2 previously and that the machines configured and added the mimik Service Mesh in those scenarios are operational and accessible.
 
@@ -34,7 +34,7 @@ In this scenario, you will provision a new Agent Machine using Visual Studio RES
 
 Then, you'll define a new Agent Collection on the existing Coordinator Machine that has the new Agent Machine created in this scenario along with the two Agent Machines created previously in Scenario 1 and Scenario 2.
 
-Finally, you'll create an instance of the User Console web server. You'll configure the User Console web server to work with the new Agent Collection. Once the User Console web server is configured, you'll be able to submit AI prompts to the mimik Service Mesh via the Coordinator Machine.
+Finally, you'll create an instance of the User Console web server. You'll configure the User Console web server to work with the newly created Agent Collection. Once the User Console web server is configured, you'll be able to submit AI prompts to the mimik Service Mesh via the Coordinator Machine.
 
 The Coordinator Machine will return a result that includes the response from each Agent Machine in the new Agent Collection. Also, the Coordinator Machine will return a unified response composed of the responses from each Agent Machine.
 
@@ -98,7 +98,7 @@ Content-Content-Type: application/json
 
 ```
 
-You'll need the two `nodeId` values when you add an additional Agent Collection to the Coordinator Machine.
+You'll need the `nodeId` values when you add an additional Agent Collection to the Coordinator Machine.
 
 The following code snippet is an example of the output returned from the command shown above. Notice that the `nodeId`, in this case, is `8bafdd2a35e17133011bbc98062f132a4c5aca249a82936d0d27a49a`.
 
