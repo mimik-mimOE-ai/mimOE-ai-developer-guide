@@ -41,7 +41,7 @@ Set the IP address of the Coordinator Machine and the name of the newly created 
 ```
 config = {
   "API_KEY": "1234",
-  "CONTROLLER_IP_ADDRESS": <IP_ADDRESS_OF_COORDINATOR_MACHINE>>
+  "CONTROLLER_IP_ADDRESS": <IP_ADDRESS_OF_COORDINATOR_MACHINE>
   "AGENT_COLLECTION_NAME": "multi-agent-collection"
 };
 ```
