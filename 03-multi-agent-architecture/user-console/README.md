@@ -41,7 +41,7 @@ Set the IP address of the Coordinator Machine and the name of the newly created 
 ```
 config = {
   "API_KEY": "1234",
-  "CONTROLLER_IP_ADDRESS": <IP_ADDRESS_OF_COORDINATOR_MACHINE>
+  "COORDINATOR_IP_ADDRESS": <IP_ADDRESS_OF_COORDINATOR_MACHINE>
   "AGENT_COLLECTION_NAME": "multi-agent-collection"
 };
 ```
@@ -53,7 +53,7 @@ Here is an example of a properly configured `sitedata.js` file.
 ```
 config = {
   "API_KEY": "1234",
-  "CONTROLLER_IP_ADDRESS": "192.168.86.21",
+  "COORDINATOR_IP_ADDRESS": "192.168.86.21",
   "AGENT_COLLECTION_NAME": "multi-agent-collection"
 };
 ```
