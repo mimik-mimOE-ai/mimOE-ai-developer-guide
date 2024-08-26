@@ -171,7 +171,6 @@ Authorization: bearer {{apiKey}}
   ], 
   "stream": true
 }
-
 ######
 ### Step 10: view the logs
 GET {{host}}/api/mai/v1/logs

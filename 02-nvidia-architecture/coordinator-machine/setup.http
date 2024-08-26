@@ -111,6 +111,11 @@ Authorization: bearer {{apiKey}}
   "owned_by": "mimik"
 }
 
+####
+GET {{host}}/api/mai/v1/models
+Content-Type: application/json
+Authorization: bearer {{apiKey}}
+
 ######
 #### Step 8: Exercise the Agent Collectoin by sending in an initial prompt
 ### Execute using VS Code's Copy Request as cURL because VS Code doesn't know how to handle streaming API's
@@ -127,7 +132,13 @@ Authorization: bearer {{apiKey}}
 }
 
 ######
-#### Step 9: Send in a follow up prompt
+#### Step 9: Check the existing collections on the machine
+GET {{host}}/api/mai/v1/models
+Content-Type: application/json
+Authorization: bearer {{apiKey}}
+
+######
+#### Step 10: Send in a follow up prompt
 ### Execute using VS Code's Copy Request as cURL because VS Code doesn't know how to handle streaming API's
 POST {{host}}/api/mai/v1/chat/completions
 Content-Type: application/json
@@ -142,6 +153,6 @@ Authorization: bearer {{apiKey}}
 }
 
 ######
-### Step 10: view the logs
+### Step 11: view the logs
 GET {{host}}/api/mai/v1/logs
 Authorization: bearer {{apiKey}}

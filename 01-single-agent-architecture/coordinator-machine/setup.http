@@ -169,7 +169,13 @@ Authorization: bearer {{apiKey}}
   "owned_by": "mimik"
 }
 
-#### Step 14: Excercise the Coordinator Machine by submitting an initial prompt
+####
+#### Step 14: View the collections on the machine
+GET {{host}}/api/mai/v1/models
+Content-Type: application/json
+Authorization: bearer {{apiKey}}
+
+#### Step 15: Exercise the Coordinator Machine by submitting an initial prompt
 ### Execute using VS Code's Copy Request as cURL because VS Code don't know how to handle streaming API
 POST {{host}}/api/mai/v1/chat/completions
 Content-Type: application/json
@@ -183,7 +189,7 @@ Authorization: bearer {{apiKey}}
   "stream": true
 }
 
-#### Step 15: Excercise the Coordinator Machine by submitting the followup prompt 
+#### Step 16: Excercise the Coordinator Machine by submitting the followup prompt 
 ### Execute using VS Code's Copy Request as cURL because VS Code don't know how to handle streaming API
 POST {{host}}/api/mai/v1/chat/completions
 Content-Type: application/json
@@ -197,6 +203,6 @@ Authorization: bearer {{apiKey}}
   "stream": true
 }
 
-### Step 16: view the logs
+### Step 17 view the logs
 GET {{host}}/api/mai/v1/logs
 Authorization: bearer {{apiKey}}

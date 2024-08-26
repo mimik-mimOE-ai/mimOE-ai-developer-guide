@@ -58,7 +58,7 @@ The `.env` file will have the following content
 
 ```
 # Environment variables for the Agent Machines
-MODEL_URL=https://huggingface.co/lmstudio-community/gemma-1.1-2b-it-GGUF/resolve/main/gemma-1.1-2b-it-Q8_0.gguf?download=true
+MODEL_URL=https://huggingface.co/lmstudio-ai/gemma-2b-it-GGUF/resolve/main/gemma-2b-it-q4_k_m.gguf?download=true
 HOST_IP_ADDRESS=<IP_ADDRESS_OF_THE_AGENT_MACHINE>
 CLIENT_ID=<YOUR_CLIENT_ID_TOKEN>
 DEVELOPER_ID_TOKEN=<YOUR_DEVELOPER_ID_TOKEN>

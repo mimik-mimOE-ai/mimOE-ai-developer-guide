@@ -58,7 +58,7 @@ The `.env` file will have the following content
 
 ```
 # Environment variables for the Agent Machines
-MODEL_URL=https://huggingface.co/lmstudio-community/gemma-1.1-2b-it-GGUF/resolve/main/gemma-1.1-2b-it-Q8_0.gguf?download=true
+MODEL_URL=https://huggingface.co/lmstudio-ai/gemma-2b-it-GGUF/resolve/main/gemma-2b-it-q4_k_m.gguf?download=true
 HOST_IP_ADDRESS=<IP_ADDRESS_OF_THE_AGENT_MACHINE>
 CLIENT_ID=<YOUR_CLIENT_ID_TOKEN>
 DEVELOPER_ID_TOKEN=<YOUR_DEVELOPER_ID_TOKEN>
@@ -77,7 +77,7 @@ Here is an example of a `.env` file with the environment variables set.
 
 
 ```
-MODEL_URL=https://huggingface.co/lmstudio-community/gemma-1.1-2b-it-GGUF/resolve/main/gemma-1.1-2b-it-Q8_0.gguf?download=true
+MODEL_URL=https://huggingface.co/lmstudio-ai/gemma-2b-it-GGUF/resolve/main/gemma-2b-it-q4_k_m.gguf?download=true
 HOST_IP_ADDRESS=192.168.86.45
 CLIENT_ID=xxxxe3cb-1fce-xxxx-b8af-38xxxx87a759
 DEVELOPER_ID_TOKEN=eyJhbGcixxxxxxxxxxxxNiIsInR5cCI6IkpXVCIsImtpZCI6Ik80d0NjU0FFMkxkX1VTR3ZSNjdmU18yQlNuZGhuYjFxb2YyY2trUlAyVE0ifQ.eyJzdWIiOiIyOTcyMTc0NjAxOTE2NTE4xxxxxxxxxx1haWwiOiIyOTcyMTc0NjAxOTE2NTE4NDAwQGV4YW1wbGUuY29tIiwiYXVkIxxxxxxxxxxzY2ItMWZjZS00NjlhLWI4YWYtMzgyNzljODdhNzU5IiwiZXhwIjoxNzI1NDY5MTMxLCJpYXQiOjE3MjI4NzcxMzEsImlzcyI6Imh0dHBzOi8vZGV2Y29uc29sZS1taWQubWltaWsuY29tIn0.TbspXGBqejwYxxxxxxxxxxEbHQpMQ1snwrKPzrFVOTBFom_i5n-r13Cr8oxaxxxxxxxxxxxx1HYnN2XTgP0cp6_nwSl7hSM00AR5hwFtmnhyHKV2NLkqb90t-YrwSNErdWqLLeh8GDcNYO7XLG69FgJuTtUMbsmV_QsW70imgKozr_hNqAPXg6SgApaMJPdbe-5Z94ZFsqkYb8diD2-675RQXozPHWIoPNkebNCAMGLupKZEnLIhsHHobNvlb7ZmxUZGhEpxGwcY9qxQ4N3E-tlZFVJ7hzSx0OXgUJGowJDHY04NUg8dreqnCUq2o0-TpGDSxxxxxxxxxxkWLD6fQA
