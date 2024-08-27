@@ -20,13 +20,13 @@
 
 The purpose of Scenario 3 is to demonstrate how to add Agent Machines to the mimik Service Mesh and then to modify the existing Coordinator Machine by adding a new Agent Collection that supports Multi Agent Machines.
 
-The machines in the scenario are the Agent Machines created previously in Scenario 1 and 2, plus a new Agent Machines you'll create in this scenario.
+The machines in the scenario are the Agent Machines created previously in Scenario 1 and 2, plus a new Agent Machine you'll create in this scenario.
 
 # What You Need to Have On Hand
 
 This scenario requires that you have an additional machine on hand with either AMD/Intel or ARM processors. Each computer needs to be running the [latest version of edgeEngine](https://github.com/mimik-mimOE/mimOE-SE-Linux).
 
-**We also assume** that you have done Scenario 1 and Scenario 2 previously and that the machines configured and added the mimik Service Mesh in those scenarios are operational and accessible.
+**We also assume** that you have done Scenario 1 and Scenario 2 previously and that the machines configured and added to the mimik Service Mesh in those scenarios are operational and accessible.
 
 # What You'll be Doing
 
