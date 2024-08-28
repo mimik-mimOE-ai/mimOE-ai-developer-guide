@@ -70,7 +70,7 @@ The `.env` file will have the following content
 # Environment variables for the Coordinator Machine
 NODE_ID_AGENT_1=<NODE_ID_OF_THE_AGENT_MACHINE>
 NODE_ID_COORDINATOR=<NODE_ID_OF_THE_COORDINATOR_MACHINE>
-MODEL_URL=https://huggingface.co/lmstudio-community/gemma-1.1-2b-it-GGUF/resolve/main/gemma-1.1-2b-it-Q8_0.gguf?download=true
+MODEL_URL=https://huggingface.co/lmstudio-ai/gemma-2b-it-GGUF/resolve/main/gemma-2b-it-q4_k_m.gguf?download=true
 HOST_IP_ADDRESS=<IP_ADDRESS_OF_THE_COORDINATOR_COMPUTER>
 CLIENT_ID=<YOUR_CLIENT_ID_TOKEN>
 DEVELOPER_ID_TOKEN=<YOUR_DEVELOPER_ID_TOKEN>
@@ -85,7 +85,7 @@ Here is an example of the `.env` file with environment variable values added:
 NODE_ID_AGENT_1=85513d8f180efd7d645af637a2278081097b60ecba3c48cbf615aed9
 NODE_ID_COORDINATOR=62de3e67c00fcce7abd6a6634eb4686653156454b97a5ed8849e975c
 
-MODEL_URL=https://huggingface.co/lmstudio-community/gemma-1.1-2b-it-GGUF/resolve/main/gemma-1.1-2b-it-Q8_0.gguf?download=true
+MODEL_URL=https://huggingface.co/lmstudio-ai/gemma-2b-it-GGUF/resolve/main/gemma-2b-it-q4_k_m.gguf?download=true
 HOST_IP_ADDRESS=192.168.86.21
 CLIENT_ID=a5efxxxx-1fce-469a-xxxx-38279c87xxxx
 DEVELOPER_ID_TOKEN=eyJhbGciOiJSUzI1NiIsIxxxxxxxxxxXVCIsImtpZCI6Ik80d0NjU0FFMkxkX1VTR3ZSNjdmU18yQlNuZGhxxxxxxxxxx2trUlAyVE0ifQ.eyJzdWIiOiIyOTcyMTc0NjAxOTE2NTE4NDAwIiwiZW1haWwiOiIyOTcyMTc0NjAxOTE2NTE4NDAwxxxxxxxxxxUuY29tIiwiYXVkIjoiYTVlZmUzY2ItMWZjZS00NjlhLWI4xxxxxxxxxxljODdhNzU5IiwiZXhwIjoxNxxxxxxxxxxxLCJpYXQiOjE3MjI4NzcxMzEsImlzcyI6Imh0dHBzOi8vZGV2Y29uc29sZS1taWQubWltaWsuY29tIn0.TbspXGBqejwYLjTSAVVy4YEbHQpMQ1snwrKPzrFVOTBFom_i5n-r13Cr8oxaxcw4CpvhyZak1HYnN2XTgP0cp6_nwSl7hSM00AR5hwFtmnhyHKV2NLkqb90t-YrwSNErdWqLLeh8GDcNYO7XLG69FgJuTtUMbsmV_QsW70imgKozr_hNqAPXg6SgApaMJPdbe-5Z94ZFsqkYb8diD2-675RQXozPHWIoPNkebNCAMGLupKZEnLIhsHHobNvlb7ZmxUZGhEpxGwcY9qxQ4N3E-tlZFVJ7hzSx0OXgUJGxxxxxxxxxxg8dreqnCUq2o0-TpGDSBNuw2Nxm1RkWLD6fQA

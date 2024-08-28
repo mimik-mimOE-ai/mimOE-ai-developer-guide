@@ -1,0 +1,130 @@
+
+### Configuration 
+@host=http://{{$dotenv HOST_IP_ADDRESS}}:8083
+@developerIdToken={{$dotenv DEVELOPER_ID_TOKEN}}
+@clientId={{$dotenv CLIENT_ID}}
+# custom defined API KEY
+@apiKey={{$dotenv API_KEY}}
+
+### Microservice
+@tarName = mim-v1-1.6.0.tar
+
+###Settings
+@tokenScope=openid edge:mcm edge:clusters edge:account:associate
+# Need a list of model URLs
+@modelUrl={{$dotenv MODEL_URL}}
+
+### Setup API's 
+
+#### Step 1: Get Target Device Information. This call returns the NODE_ID for the device
+#### DO NOT FORGET to save the value returned for the NODE_ID and save it for later
+#### use when you run the setup.http for Coordinator Machine. You'll add an addition
+#### Agent Collection to the Coordinator Machine that includes the nodeId of this
+#### additional Agent Machine as well the nodeId of the other, new Agent Machine you'll
+#### create in this scenario.
+# @name jsonrpc
+POST {{host}}/jsonrpc/v1
+Content-Content-Type: application/json
+
+{"jsonrpc": "2.0", "method": "getMe", "params": [], "id": 1}
+
+
+#### Step 2: Get edgeIdToken
+# @name jsonrpc
+POST {{host}}/jsonrpc/v1
+Content-Content-Type: application/json
+
+{"jsonrpc": "2.0", "method": "getEdgeIdToken", "params": [], "id": 1}
+
+#### Save ID Token to a local file variable
+@edgeIdToken={{jsonrpc.response.body.$.result.id_token}}
+
+#### Step 3: Get Access Token
+# @name mid
+POST https://devconsole-mid.mimik.com/token
+Content-Type: application/x-www-form-urlencoded
+
+client_id={{clientId}}
+&grant_type=id_token_signin
+&id_token={{developerIdToken}}
+&scope={{tokenScope}}
+&edge_id_token={{edgeIdToken}}
+
+#### Save Access Token to a local file variable
+@edgeToken={{mid.response.body.$.access_token}}
+
+#### Step 4: Associate device with account 
+POST {{host}}/jsonrpc/v1
+Content-Content-Type: application/json
+
+{"jsonrpc": "2.0", "method": "associateAccount", "params": ["{{edgeToken}}"], "id": 1}
+
+
+### Step 5: Deploy microservice 
+POST {{host}}/mcm/v1/images
+Content-Type: multipart/form-data; boundary=$Boundary$
+Authorization: Bearer {{edgeToken}}
+
+--$Boundary$
+Content-Disposition: form-data; name="image"; filename="{{tarName}}"
+
+< ../../deploy/{{tarName}}
+--$Boundary$--
+
+####  Step 6: Get Images 
+GET {{host}}/mcm/v1/images
+Authorization: Bearer {{edgeToken}}
+
+#### Step 7: Start microservice 
+POST {{host}}/mcm/v1/containers
+Authorization: Bearer {{edgeToken}}
+
+{
+    "name": "mim-v1",
+    "image": "mim-v1",
+    "env": {
+      "MCM.BASE_API_PATH": "/mim/v1",
+      "API_KEY": "{{apiKey}}",
+      "MCM.API_ALIAS": "true",
+      "MCM.OTEL_SUPPORT": "true"
+    }
+}
+
+####  Step 8: Get Containers
+GET {{host}}/mcm/v1/containers
+Authorization: Bearer {{edgeToken}}
+
+### Step 9: Download model (Google Gemma 2b)
+### Copy as cURL because VS Code doesn't know how to handle streaming API
+POST {{host}}/api/mim/v1/models
+Content-Type: application/json
+Authorization: bearer {{apiKey}}
+
+{
+  "id": "lmstudio-ai/gemma-2b-it-GGUF",
+  "object": "model",
+  "url": "{{modelUrl}}",
+  "owned_by": "lmstudio-ai"
+}
+
+### Step 10: View deployed models 
+GET {{host}}/api/mim/v1/models
+Content-Type: application/json
+Authorization: bearer {{apiKey}}
+
+##### Execute the prompt that exercises the microservice #####
+
+### Step 11: Run the prompt that exercises the microservice
+### Copy as cURL because VS Code doesn't know how to handle streaming API
+### Be patient, the response wil take about a minute
+POST {{host}}/api/mim/v1/chat/completions
+Content-Type: application/json
+Authorization: Bearer {{apiKey}}
+
+{
+  "model": "lmstudio-ai/gemma-2b-it-GGUF",
+  "messages": [ 
+    { "role": "user", "content": "Who were the first 3 Presidents of the United States" }
+  ],
+  "stream": true
+}

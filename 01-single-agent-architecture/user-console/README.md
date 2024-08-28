@@ -41,7 +41,7 @@ Go to the file `sitedata.js` and change the tag `<IP_ADDRESS_OF_COORDINATOR_MACH
 ```
 config = {
   "API_KEY": "1234",
-  "COORDINATOR_IP_ADDRESS": "192.168.86.21",
+  "COORDINATOR_IP_ADDRESS": "<COORDINATOR_IP_ADDRESS>",
   "AGENT_COLLECTION_NAME":"single-agent-collection"
 };
 ```

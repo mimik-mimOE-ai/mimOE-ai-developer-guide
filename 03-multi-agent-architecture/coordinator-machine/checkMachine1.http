@@ -1,0 +1,112 @@
+#######
+# The purpose of this file is provide a way to verify that the microservices
+# are running on the first agent machine in the multi-agent collection
+#######
+
+### Configuration 
+@host = http://{{$dotenv HOST_IP_ADDRESS}}:8083
+
+@machine1 = http://{{$dotenv IP_ADDRESS_AGENT_1}}:8083
+@machine2 = http://{{$dotenv IP_ADDRESS_NVIDIA_AGENT}}:8083
+@machine3 = http://{{$dotenv IP_ADDRESS_AGENT_3}}:8083
+
+@developerIdToken={{$dotenv DEVELOPER_ID_TOKEN}}
+@clientId={{$dotenv CLIENT_ID}}
+@apiKey={{$dotenv API_KEY}}
+
+@agentCollectionName={{$dotenv AGENT_COLLECTION_NAME}}
+
+### Microservice
+@maiTarName = mai-v1-1.7.0.tar
+
+###Settings
+@tokenScope=openid edge:mcm edge:clusters edge:account:associate
+@modelUrl={{$dotenv MODEL_URL}}
+
+### Node Info
+### Set the following values using the information returned from each constituent node's setup.http file.
+@nodeId1_AI_MACHINE = {{$dotenv NODE_ID_AGENT_1}}
+@nodeId2_AI_MACHINE = {{$dotenv NODE_ID_NVIDIA_AGENT}}
+@nodeId3_AI_MACHINE = {{$dotenv NODE_ID_AGENT_3}}
+@nodeId_COORDINATOR = {{$dotenv NODE_ID_COORDINATOR}}
+
+### Setup API's 
+
+
+####
+#### Step 1: Verify that the miscroservices are running on Agent Machine 1
+POST {{machine1}}/jsonrpc/v1
+Content-Content-Type: application/json
+
+{"jsonrpc": "2.0", "method": "getMe", "params": [], "id": 1}
+
+
+#####
+#### Step 2: Get edgeIdToken
+# @name jsonrpc
+POST {{machine1}}/jsonrpc/v1
+Content-Content-Type: application/json
+
+{"jsonrpc": "2.0", "method": "getEdgeIdToken", "params": [], "id": 1}
+
+#### Save Token  to the local file variable
+@edgeIdToken={{jsonrpc.response.body.$.result.id_token}}
+
+#####
+#### Step 3: Get Access Token
+# @name mid
+POST https://devconsole-mid.mimik.com/token
+Content-Type: application/x-www-form-urlencoded
+
+client_id={{clientId}}
+&grant_type=id_token_signin
+&id_token={{developerIdToken}}
+&scope={{tokenScope}}
+&edge_id_token={{edgeIdToken}}
+
+####
+@edgeToken={{mid.response.body.$.access_token}}
+
+
+####
+#### Step 4: Associate device with account 
+POST {{machine1}}/jsonrpc/v1
+Content-Content-Type: application/json
+
+{"jsonrpc": "2.0", "method": "associateAccount", "params": ["{{edgeToken}}"], "id": 1}
+
+####
+#### Step 5: Verify that the miscroservices are running on the Coordinator Machine
+GET {{machine1}}/mcm/v1/containers
+Authorization: Bearer {{edgeToken}}
+
+
+######
+### Step 5: Verify that the model has been deployed 
+GET {{machine1}}/api/mim/v1/models
+Content-Type: application/json
+Authorization: bearer {{apiKey}}
+
+##### Execute the prompt that exercises the microservice #####
+
+### Step 6: Run the prompt that exercises the microservice
+### Copy as cURL because VS Code doesn't know how to handle streaming API
+### Be patient, the response wil take about a minute
+POST {{machine1}}/api/mim/v1/chat/completions
+Content-Type: application/json
+Authorization: Bearer {{apiKey}}
+
+{
+  "model": "lmstudio-ai/gemma-2b-it-GGUF",
+  "messages": [ 
+    { "role": "user", "content": "Who were the first 3 Presidents of the United States" }
+  ],
+  "stream": true
+}
+
+
+
+######
+### Step 7: view the logs
+GET {{machine1}}/api/mai/v1/logs
+Authorization: bearer {{apiKey}}
