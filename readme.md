@@ -1,7 +1,7 @@
 # Table of Contents
 
 - [Table of Contents](#table-of-contents)
-- [Introduction to mimik ai](#introduction-to-mimoeai)
+- [Introduction to mimik ai](#introduction-to-mimik-ai)
   - [Welcome to mimik ai](#welcome-to-mimik-ai)
   - [What is mimik ai?](#what-is-mimik-ai)
   - [Key Features and Benefits of mimik ai](#key-features-and-benefits-of-mimik-eai)
@@ -87,7 +87,7 @@ The main benefits are:
 
 ## Understanding the Basic Architecture
 
-Under mimOE.ai, two types of machines are running on a mimik Service Mesh. One machine is a Coordinator Machine. The  other machine is an Agent Machine. As mentioned above, mimOE.ai has a feature that will process prompt results from various AI prompts and synthesize those prompt results into a "best possible response". The Coordinator Machine does the work of gathering the prompt results into a "best possible response". The Agent Machine(s) executes a particular prompt against an LLM or vector database that gets processed upstream by a Coordinator Machine.
+Under mimik ai, two types of machines are running on a mimik Service Mesh. One machine is a Coordinator Machine. The  other machine is an Agent Machine. As mentioned above, mimik ai has a feature that will process prompt results from various AI prompts and synthesize those prompt results into a "best possible response". The Coordinator Machine does the work of gathering the prompt results into a "best possible response". The Agent Machine(s) executes a particular prompt against an LLM or vector database that gets processed upstream by a Coordinator Machine.
 
 The figure below shows an instance of the mimik Service Mesh with four Agent Machines and a Coordinator Machine.
 
@@ -99,13 +99,13 @@ A computing device is deemed a Coordinator Machine when it runs the `mAIChain` m
 
 **NOTE:** It is possible for a computing device to be both an Agent Machine and a Coordinator Machine. However, this capability is an advanced topic beyond the scope of this introductory documentation.
 
-## The Nature and Use of mimOE.ai
+## The Nature and Use of mimik ai
 
 mimik ai utilizes mimik's mimiOE-ai runtime and mimik Service Mesh to enhance artificial intelligence processing capabilities in application development. Using mimik ai, a developer can interact with LLMs that run directly on any number of computing devices. Such devices can be a standard computer on a developer machine, a server in a data center, a mobile device such as a cell phone or tablet, or hardware optimized for AI processing such as those computing devices manufactured by Nvidia.
 
 ## AI Focused Microservices
 
-mimOE publishes several microservices that execute under the edgeEngine runtime on a given computing device. These microservices are:
+mimOE-ai publishes several microservices that execute under the mimOE-ai runtime on a given computing device. These microservices are:
 
 |Microservice|Description||
 |----|----|----|
@@ -125,9 +125,9 @@ As mentioned, an Agent Machine executes a prompt against a particular LLM or vec
 
 ![Logical Architecture](./images/logical-agent-architecture.png)
 
-The starting point for interacting with an Agent Machine is a prompt submitted to the edgeEngine runtime web server at port 8083. EdgeEngine passes the prompt onto the mimOE.ai microservice, which interacts with a particular AI model. If the Agent Machine runs the `mILM` microservice, it will access LLM stored locally on the machine. The Agent Machine will interact with a vector database if it runs the `mKB` microservice. If the Agent Machine runs the `mModelStore` microservice, it will interact with an AI model running elsewhere.
+The starting point for interacting with an Agent Machine is a prompt submitted to the edgeEngine runtime web server at port 8083. EdgeEngine passes the prompt onto the edge microservice, which interacts with a particular AI model. If the Agent Machine runs the `mILM` microservice, it will access LLM stored locally on the machine. The Agent Machine will interact with a vector database if it runs the `mKB` microservice. If the Agent Machine runs the `mModelStore` microservice, it will interact with an AI model running elsewhere.
 
-Once the AI model processes the prompt, the result is returned to the mimOE.ai microservice and then returned to the caller who submitted the prompt.
+Once the AI model processes the prompt, the result is returned to the edge microservice and then returned to the caller who submitted the prompt.
 
 Working with an Agent Machine is covered in [a section to come](#getting-a-single-agent-machine-up-and-running).
 
@@ -246,7 +246,7 @@ When it comes time to do the hands-on demonstration projects, you'll need to hav
 * A development machine running a copy of Visual Studio Code
 * The [Rest Client extension](https://marketplace.visualstudio.com/items?itemName=MadsKristensen.RestClient) installed in Visual Studio code
 * Working familiarity using the Rest Client. (Read [this tutorial](https://medium.com/lseg-developer-community/how-to-test-rest-api-with-visual-studio-code-rest-client-extensions-9f2e061d0299) to get a basic understanding of how to use the Rest Client.)
-* A set of computers running the Ubuntu 22.04 with port 8083 exposed. These computers can be distinct physical AMD and ARM, such as Raspberry Pi or AMD virtual machines (VM) running Ubuntu 22.04. Also, these computers must be running the latest version of edgeEngine for mimOE.ai. This is a version of edgeEngine formally called `mimOE-SE-Linux v3.12.0` and can be downloaded from the [mimOE-SE-Linux v3.12.0 Release Page on GitHub](https://github.com/mimik-mimOE/mimOE-SE-Linux/).
+* A set of computers running the Ubuntu 22.04 with port 8083 exposed. These computers can be distinct physical AMD and ARM, such as Raspberry Pi or AMD virtual machines (VM) running Ubuntu 22.04. Also, these computers must be running the latest version of mimOE-AI for mimik ai. This is a version of mimOE-ai formally called `mimOE-SE-Linux v3.12.0` and can be downloaded from the [mimOE-ai-SE-Linux v3.12.1 Release Page on GitHub](https://github.com/mimik-mimOE/mimOE-ai-SE-Linux/).
 
 ## Hardware and Software Recommendations
 
@@ -266,23 +266,23 @@ For `Scenario 1`, we recommend using an AMD computer for the Coordinator Machine
 
 In Scenario 2, we demonstrate incorporating an Nvidia Orin Jetson Nano device into the mimik Service Mesh. You will actually need one available. In Scenario 2, you will use the existing Coordinator Machine you created in Scenario 1.
 
-In `Scenario 3`, you will add two more Agent Machines to the mimik Service Mesh and configure mimOE.ai to support the additional AMD or ARM computers.
+In `Scenario 3`, you will add two more Agent Machines to the mimik Service Mesh and configure mimOE-ai to support the additional AMD or ARM computers.
 
 
-The table below describes the machine and releases of mimOE-SE-Linux v3.12.0 that you will need to have available for each scenario.
+The table below describes the machine and releases of mimOE-ai-SE-Linux v3.12.1 that you will need to have available for each scenario.
 
 |Scenario|Machine|Type|Version of mimOE-SE-Linux|
 |:---------|----|----|----|
-|Scenario 1|Coordinator Machine|ARM or AMD|Click to download: [mimOE-SE-linux-developer-AMD64-v3.12.0.tar](https://github.com/mimik-mimOE/mimOE-SE-Linux/releases/download/v3.12.0/mimOE-SE-linux-developer-AMD64-v3.12.0.tar) or [mimOE-SE-linux-developer-ARM64-v3.12.0.tar](https://github.com/mimik-mimOE/mimOE-SE-Linux/releases/download/v3.12.0/mimOE-SE-linux-developer-ARM64-v3.12.0.tar)|
-| |Agent Machine|ARM or AMD|mimOE-SE-linux-developer-AMD64-v3.12.0.tar or mimOE-SE-linux-developer-ARM64-v3.12.0.tar|
+|Scenario 1|Coordinator Machine|ARM or AMD|Click to download: [mimOE-ai-SE-linux-developer-AMD64-v3.12.1.tar](https://github.com/mimik-mimOE/mimOE-SE-Linux/releases/download/v3.12.1/mimOE-ai-SE-linux-developer-AMD64-v3.12.0.tar) or [mimOE-ai-SE-linux-developer-ARM64-v3.12.0.tar](https://github.com/mimik-mimOE/mimOE-SE-Linux/releases/download/v3.12.1/mimOE-ai-SE-linux-developer-ARM64-v3.12.1.tar)|
+| |Agent Machine|ARM or AMD|mimOE-ai-SE-linux-developer-AMD64-v3.12.1.tar or mimOE-ai-SE-linux-developer-ARM64-v3.12.1.tar|
 |Scenario 2|Existing Coordinator Machine|Installed in Scenario 1| |
 | |Agent Machine|Installed in previous in Scenario 1| |
-| |Agent Machine|Nvidia Orin Jetson Nano device| Click to download: [mimOE-SE-linux-developer-ARM64-CUDA-v3.12.0.tar](https://github.com/mimik-mimOE/mimOE-SE-Linux/releases/download/v3.12.0/mimOE-SE-linux-developer-ARM64-CUDA-v3.12.0.tar)|
+| |Agent Machine|Nvidia Orin Jetson Nano device| Click to download: [mimOE-ai-SE-linux-developer-ARM64-CUDA-v3.12.1.tar](https://github.com/mimik-mimOE/mimOE-SE-Linux/releases/download/v3.12.1/mimOE-ai-SE-linux-developer-ARM64-CUDA-v3.12.0.tar)|
 |Scenario 3|Existing Coordinator Machine|Installed in Scenario 1| |
 | |Agent Machine|Installed in Scenario 1| |
 | |Agent Machine|Nvidia Orin Jetson Nano device installed in Scenario 2| |
-| |Agent Machine|ARM or AMD|mimOE-SE-linux-developer-AMD64-v3.12.0.tar or mimOE-SE-linux-developer-ARM64-v3.12.0.tar|
-| |Agent Machine|ARM or AMD|mimOE-SE-linux-developer-AMD64-v3.12.0.tar or mimOE-SE-linux-developer-ARM64-v3.12.0.tar|
+| |Agent Machine|ARM or AMD|mimOE-ai-SE-linux-developer-AMD64-v3.12.0.tar or mimOE-ai-SE-linux-developer-ARM64-v3.12.0.tar|
+| |Agent Machine|ARM or AMD|mimOE-ai-SE-linux-developer-AMD64-v3.12.0.tar or mimOE-ai-SE-linux-developer-ARM64-v3.12.0.tar|
 
 The details of each release, as well as Quickstart instructions for installation, are located at [the mimOE-SE-Linux-v3.12.0 Release page](https://github.com/mimik-mimOE/mimOE-SE-Linux/releases) on GitHub.
 
